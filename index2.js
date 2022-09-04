@@ -5,6 +5,7 @@ const keyObjects = [
         "play": function() {
             playSFX("C3")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.C3')
@@ -15,6 +16,7 @@ const keyObjects = [
         "play": function() {
             playSFX("CS3")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.CS3')
@@ -25,6 +27,7 @@ const keyObjects = [
         "play": function() {
             playSFX("D3")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.D3')
@@ -35,6 +38,7 @@ const keyObjects = [
         "play": function() {
             playSFX("DS3")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.DS3')
@@ -45,6 +49,7 @@ const keyObjects = [
         "play": function() {
             playSFX("E3")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.E3')
@@ -55,6 +60,7 @@ const keyObjects = [
         "play": function() {
             playSFX("F3")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.F3')
@@ -65,6 +71,7 @@ const keyObjects = [
         "play": function() {
             playSFX("FS3")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.FS3')
@@ -75,6 +82,7 @@ const keyObjects = [
         "play": function() {
             playSFX("G3")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.G3')
@@ -85,6 +93,7 @@ const keyObjects = [
         "play": function() {
             playSFX("GS3")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.GS3')
@@ -95,6 +104,7 @@ const keyObjects = [
         "play": function() {
             playSFX("A3")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.A3')
@@ -105,6 +115,7 @@ const keyObjects = [
         "play": function() {
             playSFX("AS3")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.AS3')
@@ -115,6 +126,7 @@ const keyObjects = [
         "play": function() {
             playSFX("B3")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.B3')
@@ -125,6 +137,7 @@ const keyObjects = [
         "play": function() {
             playSFX("C4")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.C4')
@@ -135,6 +148,7 @@ const keyObjects = [
         "play": function() {
             playSFX("CS4")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.CS4')
@@ -145,6 +159,7 @@ const keyObjects = [
         "play": function() {
             playSFX("D4")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.D4')
@@ -155,6 +170,7 @@ const keyObjects = [
         "play": function() {
             playSFX("DS4")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.DS4')
@@ -165,6 +181,7 @@ const keyObjects = [
         "play": function() {
             playSFX("E4")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.E4')
@@ -175,6 +192,7 @@ const keyObjects = [
         "play": function() {
             playSFX("F4")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.F4')
@@ -185,6 +203,7 @@ const keyObjects = [
         "play": function() {
             playSFX("FS4")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.FS4')
@@ -195,6 +214,7 @@ const keyObjects = [
         "play": function() {
             playSFX("G4")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.G4')
@@ -205,6 +225,7 @@ const keyObjects = [
         "play": function() {
             playSFX("GS4")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.GS4')
@@ -215,6 +236,7 @@ const keyObjects = [
         "play": function() {
             playSFX("A4")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.A4')
@@ -225,6 +247,7 @@ const keyObjects = [
         "play": function() {
             playSFX("AS4")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.AS4')
@@ -235,6 +258,7 @@ const keyObjects = [
         "play": function() {
             playSFX("B4")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.B4')
@@ -245,6 +269,7 @@ const keyObjects = [
         "play": function() {
             playSFX("C5")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.C5')
@@ -255,6 +280,7 @@ const keyObjects = [
         "play": function() {
             playSFX("CS5")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.CS5')
@@ -265,6 +291,7 @@ const keyObjects = [
         "play": function() {
             playSFX("D5")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.D5')
@@ -275,6 +302,7 @@ const keyObjects = [
         "play": function() {
             playSFX("DS5")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.DS5')
@@ -285,6 +313,7 @@ const keyObjects = [
         "play": function() {
             playSFX("E5")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.E5')
@@ -295,6 +324,7 @@ const keyObjects = [
         "play": function() {
             playSFX("F5")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.F5')
@@ -305,6 +335,7 @@ const keyObjects = [
         "play": function() {
             playSFX("FS5")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.FS5')
@@ -315,6 +346,7 @@ const keyObjects = [
         "play": function() {
             playSFX("G5")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.G5')
@@ -325,6 +357,7 @@ const keyObjects = [
         "play": function() {
             playSFX("GS5")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.GS5')
@@ -335,6 +368,7 @@ const keyObjects = [
         "play": function() {
             playSFX("A5")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.A5')
@@ -345,6 +379,7 @@ const keyObjects = [
         "play": function() {
             playSFX("AS5")
         },
+        "active": 0,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.AS5')
@@ -355,6 +390,7 @@ const keyObjects = [
         "play": function() {
             playSFX("B5")
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.B5')
@@ -365,6 +401,7 @@ const keyObjects = [
         "play": function() {
             playSFX('C6')
         },
+        "active": 1,
         "keybind": undefined,
         "pressed": false,
         "html": document.querySelector('.C6')
@@ -372,9 +409,9 @@ const keyObjects = [
 ]
 
 const labelArray = document.querySelectorAll('.label')
-let keyPressed = false //whether glissando is possible or not
-const major = [0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28, 29, 31, 33, 35, 36]
-const minor = [0, 2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 19, 20, 22, 24, 26, 27, 29, 31, 32, 34, 36]
+let glissPotential = false //whether glissando is possible or not
+const major = [0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28, 29, 31, 33, 35, 36] //major key pattern
+const minor = [0, 2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 19, 20, 22, 24, 26, 27, 29, 31, 32, 34, 36] //minor key pattern
 let signature = major
 let legend = ['S', 'X', 'E', 'D', 'C', 'R', 'F', 'V', 'T', 'G', 'B', 'Y', 'H', 'N', 'U', 'J', 'M', 'I', 'K', 'O', 'L', 'P', '|']
 let legendCount = 0
@@ -387,19 +424,6 @@ function allKeys(something) {
         if (something) label.innerHTML = something
 	})
 }
-allKeys('')
-
-function allObjects() {
-    keyObjects.forEach(key => {
-        key.keybind = undefined
-    })
-}
-
-function syncObjWithKeys() {
-    keyObjects.forEach(key => {
-        key.keybind ? key.html.firstElementChild.innerHTML = key.keybind : key.html.firstElementChild.innerHTML = ''
-    })
-}
 
 //mouse function
 labelArray.forEach(label => {
@@ -409,7 +433,7 @@ labelArray.forEach(label => {
         const relKey = keyObjects[e.target.id]
         relKey.play()
         relKey.pressed = true
-        keyPressed = true
+        glissPotential = true
         relKey.html.style.background = 'white'
         relKey.html.firstElementChild.style.color = 'black'
     })
@@ -419,7 +443,7 @@ labelArray.forEach(label => {
         e.preventDefault()
         const relKey = keyObjects[e.target.id]
         relKey.pressed = false
-        keyPressed = false
+        glissPotential = false
         relKey.html.style.background = 'black'
         relKey.html.firstElementChild.style.color = 'white'
     })
@@ -437,7 +461,7 @@ labelArray.forEach(label => {
     label.addEventListener('mouseover', e => {
         e.preventDefault()
         const relKey = keyObjects[e.target.id]
-        if (keyPressed === true) {
+        if (glissPotential === true) {
             relKey.play()
             relKey.pressed = true
             relKey.html.style.background = 'white'
@@ -447,70 +471,80 @@ labelArray.forEach(label => {
 })
 
 document.querySelector('.piano').addEventListener('mouseleave', e => {
-    keyPressed = false
+    glissPotential = false
 })
 
 document.querySelector('.sig-arrow-left').addEventListener('click', () => {
-    activeKeyMapper(signatureShifter(false), signature)
+    activeKeyMapper(signatureShifter(--signatureShift), signature)
 })
 
 document.querySelector('.sig-arrow-right').addEventListener('click', () => {
-    activeKeyMapper(signatureShifter(true), signature)
+    activeKeyMapper(signatureShifter(++signatureShift), signature)
 })
 
-//find out active keys
 function activeKeyMapper(shift, signature) {
-	allObjects()
-	let overflow = 0
-	let activeKeys = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-	signature.forEach(key => {
-		if (key + shift > labelArray.length - 2) {
-			overflow = 36
-		}
-		activeKeys[key + shift - overflow] = 1
-	})
-	if (activeKeys[0] === 1) activeKeys[activeKeys.length - 1] = 1
-	console.log(activeKeys)
-
-    let legendCounter = 0
-    keyObjects.forEach((key, index) => {
-        if (activeKeys[index]) key.keybind = legend[legendCounter++]
+    keyObjects.forEach(key => {
+        key.active = 0
     })
-    console.log(keyObjects)
-    syncObjWithKeys()
-	// assignSig(activeKeys)
-	// sigCounter.innerHTML = signatureMaker(shift, signature)
+    signature.forEach(note => {
+        keyObjects[(note + shift) % 36].active = 1
+    })
+    if (keyObjects[0].active) keyObjects[keyObjects.length - 1].active = 1
+
+    activeKeyAssigner()
+
+    //keyObjects.forEach(key => {
+    //    console.log(key.name, key.active)
+    //})
+    //console.log("\n\n\n")
 }
 
-function signatureShifter(shiftUp) {
-    if (shiftUp) {
-        if (++signatureShift > 11) {
-            signatureShift = 0
-        }
-    } else {
-        if (--signatureShift < 0) {
-            signatureShift = 11
-        }
+function activeKeyAssigner() {
+    let legendCounter = 0
+    keyObjects.forEach(key => {
+        (key.active) ? key.html.firstElementChild.innerHTML = legend[legendCounter++] : key.html.firstElementChild.innerHTML = ''
+    })
+}
+
+function signatureShifter(shift) {
+    if (shift > 11) {
+        shift = 0
+    } else if (shift < 0) {
+        shift = 11
     }
     return signatureShift
 }
-
-//label keys
-// signature.forEach(element => {
-//     keyObjects[element].keybind = legend[legendCount++]
-// })
-
 
 //keyboard function
 window.addEventListener('keydown', e => {
     console.log(e.key, e.code)
 	switch (e.code) {
 		default:
-			
+        const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
+        if (relKey.pressed === false) {
+            relKey.play()
+            relKey.pressed = true
+            glissPotential = true
+            relKey.html.style.background = 'white'
+            relKey.html.firstElementChild.style.color = 'black'
+        }
 	}
 })
 
-// keyObjects.forEach(key => {
-//     console.log(key.keybind)
-// })
+window.addEventListener('keyup', e => {
+    console.log(e.key, e.code)
+	switch (e.code) {
+		default:
+        const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
+        relKey.pressed = false
+        glissPotential = false
+        relKey.html.style.background = 'black'
+        relKey.html.firstElementChild.style.color = 'white'
+	}
+})
+
+//keyObjects.forEach(key => {
+//    console.log(key.keybind)
+//})
+
+activeKeyAssigner()

@@ -49,6 +49,16 @@ function addSFX(key, pathToAudioFile, number) {
     }
 }
 
+function playSFX0(key) {
+    sfx.forEach(file => {
+        if(file.key == key) {
+            file.audio.pause()
+            file.audio.currentTime = 0  
+            file.audio.play()
+        }
+    })
+}
+
 //playSFX(key) function - Accepts a key and plays the corresponding sound effect if it is available from the SFX pool
 function playSFX(key) {
     //If sound effects aren't muted
@@ -63,6 +73,8 @@ function playSFX(key) {
                 if(sfxPlayPromise !== undefined) {
                     //Then, play the sound effect
                     sfxPlayPromise.then(_ => {
+                        // sfx[i].audio.pause();
+                        // sfx[i].currentTime = 0
                         sfx[i].audio.play();
                     }).catch(error => { //Else, it's not loaded yet
                        console.log("audio not yet loaded");
@@ -317,45 +329,45 @@ function loopMusicOff() {
     loopThroughMusic = false; //Music won't be looped
 }
 
-addSFX('C3', './notes/3c.mp3', 10)
-addSFX('CS3', './notes/3c-.mp3', 10)
-addSFX('D3', './notes/3d.mp3', 10)
-addSFX('DS3', './notes/3d-.mp3', 10)
-addSFX('E3', './notes/3e.mp3', 10)
-addSFX('F3', './notes/3f.mp3', 10)
-addSFX('FS3', './notes/3f-.mp3', 10)
-addSFX('G3', './notes/3g.mp3', 10)
-addSFX('GS3', './notes/3g-.mp3', 10)
-addSFX('A3', './notes/3a.mp3', 10)
+addSFX('C3', './notes/3c.mp3', 8)
+addSFX('CS3', './notes/3c-.mp3', 8)
+addSFX('D3', './notes/3d.mp3', 8)
+addSFX('DS3', './notes/3d-.mp3', 8)
+addSFX('E3', './notes/3e.mp3', 8)
+addSFX('F3', './notes/3f.mp3', 8)
+addSFX('FS3', './notes/3f-.mp3', 8)
+addSFX('G3', './notes/3g.mp3', 8)
+addSFX('GS3', './notes/3g-.mp3', 8)
+addSFX('A3', './notes/3a.mp3', 8)
 
-addSFX('AS3', './notes/3a-.mp3', 10)
-addSFX('B3', './notes/3b.mp3', 10)
-addSFX('C4', './notes/4c.mp3', 10)
-addSFX('CS4', './notes/4c-.mp3', 10)
-addSFX('D4', './notes/4d.mp3', 10)
-addSFX('DS4', './notes/4d-.mp3', 10)
-addSFX('E4', './notes/4e.mp3', 10)
-addSFX('F4', './notes/4f.mp3', 10)
-addSFX('FS4', './notes/4f-.mp3', 10)
-addSFX('G4', './notes/4g.mp3', 10)
+addSFX('AS3', './notes/3a-.mp3', 8)
+addSFX('B3', './notes/3b.mp3', 8)
+addSFX('C4', './notes/4c.mp3', 8)
+addSFX('CS4', './notes/4c-.mp3', 8)
+addSFX('D4', './notes/4d.mp3', 8)
+addSFX('DS4', './notes/4d-.mp3', 8)
+addSFX('E4', './notes/4e.mp3', 8)
+addSFX('F4', './notes/4f.mp3', 8)
+addSFX('FS4', './notes/4f-.mp3', 8)
+addSFX('G4', './notes/4g.mp3', 8)
 
-addSFX('GS4', './notes/4g-.mp3', 10)
-addSFX('A4', './notes/4a.mp3', 10)
-addSFX('AS4', './notes/4a-.mp3', 10)
-addSFX('B4', './notes/4b.mp3', 10)
-addSFX('C5', './notes/5c.mp3', 10)
-addSFX('CS5', './notes/5c-.mp3', 10)
-addSFX('D5', './notes/5d.mp3', 10)
-addSFX('DS5', './notes/5d-.mp3', 10)
-addSFX('E5', './notes/5e.mp3', 10)
-addSFX('F5', './notes/5f.mp3', 10)
+addSFX('GS4', './notes/4g-.mp3', 8)
+addSFX('A4', './notes/4a.mp3', 8)
+addSFX('AS4', './notes/4a-.mp3', 8)
+addSFX('B4', './notes/4b.mp3', 8)
+addSFX('C5', './notes/5c.mp3', 8)
+addSFX('CS5', './notes/5c-.mp3', 8)
+addSFX('D5', './notes/5d.mp3', 8)
+addSFX('DS5', './notes/5d-.mp3', 8)
+addSFX('E5', './notes/5e.mp3', 8)
+addSFX('F5', './notes/5f.mp3', 8)
 
-addSFX('FS5', './notes/5f-.mp3', 10)
-addSFX('G5', './notes/5g.mp3', 10)
-addSFX('GS5', './notes/5g-.mp3', 10)
-addSFX('A5', './notes/5a.mp3', 10)
-addSFX('AS5', './notes/5a-.mp3', 10)
-addSFX('B5', './notes/5b.mp3', 10)
-addSFX('C6', './notes/6c.mp3', 10)
+addSFX('FS5', './notes/5f-.mp3', 8)
+addSFX('G5', './notes/5g.mp3', 8)
+addSFX('GS5', './notes/5g-.mp3', 8)
+addSFX('A5', './notes/5a.mp3', 8)
+addSFX('AS5', './notes/5a-.mp3', 8)
+addSFX('B5', './notes/5b.mp3', 8)
+addSFX('C6', './notes/6c.mp3', 8)
 
 console.log('ready')
