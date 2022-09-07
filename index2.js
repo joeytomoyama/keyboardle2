@@ -1,5 +1,53 @@
 const keyObjects = [
     {
+        "name": "chord1",
+        "id": -4,
+        "play": function() {
+            playSFX("C3")
+        },
+        "active": 1,
+        "keybind": undefined,
+        "pressed": false,
+        "shifted": false,
+        "html": document.querySelector('.C3')
+    },
+    {
+        "name": "chord2",
+        "id": -3,
+        "play": function() {
+            playSFX("C3")
+        },
+        "active": 1,
+        "keybind": undefined,
+        "pressed": false,
+        "shifted": false,
+        "html": document.querySelector('.C3')
+    },
+    {
+        "name": "chord3",
+        "id": -2,
+        "play": function() {
+            playSFX("C3")
+        },
+        "active": 1,
+        "keybind": undefined,
+        "pressed": false,
+        "shifted": false,
+        "html": document.querySelector('.C3')
+    },
+    {
+        "name": "chord4",
+        "id": -1
+        "play": function() {
+            playSFX("C3")
+        },
+        "active": 1,
+        "keybind": undefined,
+        "pressed": false,
+        "shifted": false,
+        "html": document.querySelector('.C3')
+    },
+    {
         "name": "C3",
         "id": 0,
         "play": function() {
