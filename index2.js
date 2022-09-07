@@ -8,6 +8,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.C3')
     },
     {
@@ -19,6 +20,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.CS3')
     },
     {
@@ -30,6 +32,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.D3')
     },
     {
@@ -41,6 +44,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.DS3')
     },
     {
@@ -52,6 +56,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.E3')
     },
     {
@@ -63,6 +68,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.F3')
     },
     {
@@ -74,6 +80,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.FS3')
     },
     {
@@ -85,6 +92,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.G3')
     },
     {
@@ -96,6 +104,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.GS3')
     },
     {
@@ -107,6 +116,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.A3')
     },
     {
@@ -118,6 +128,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.AS3')
     },
     {
@@ -129,6 +140,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.B3')
     },
     {
@@ -140,6 +152,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.C4')
     },
     {
@@ -151,6 +164,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.CS4')
     },
     {
@@ -162,6 +176,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.D4')
     },
     {
@@ -173,6 +188,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.DS4')
     },
     {
@@ -184,6 +200,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.E4')
     },
     {
@@ -195,6 +212,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.F4')
     },
     {
@@ -206,6 +224,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.FS4')
     },
     {
@@ -217,6 +236,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.G4')
     },
     {
@@ -228,6 +248,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.GS4')
     },
     {
@@ -239,6 +260,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.A4')
     },
     {
@@ -250,6 +272,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.AS4')
     },
     {
@@ -261,6 +284,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.B4')
     },
     {
@@ -272,6 +296,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.C5')
     },
     {
@@ -283,6 +308,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.CS5')
     },
     {
@@ -294,6 +320,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.D5')
     },
     {
@@ -305,6 +332,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.DS5')
     },
     {
@@ -316,6 +344,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.E5')
     },
     {
@@ -327,6 +356,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.F5')
     },
     {
@@ -338,6 +368,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.FS5')
     },
     {
@@ -349,6 +380,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.G5')
     },
     {
@@ -360,6 +392,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.GS5')
     },
     {
@@ -371,6 +404,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.A5')
     },
     {
@@ -382,6 +416,7 @@ const keyObjects = [
         "active": 0,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.AS5')
     },
     {
@@ -393,6 +428,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.B5')
     },
     {
@@ -404,6 +440,7 @@ const keyObjects = [
         "active": 1,
         "keybind": undefined,
         "pressed": false,
+        "shifted": false,
         "html": document.querySelector('.C6')
     }
 ]
@@ -440,7 +477,7 @@ labelArray.forEach(label => {
 
     //mouse up
     label.addEventListener('mouseup', e => {
-        e.preventDefault()
+        // e.preventDefault()
         const relKey = keyObjects[e.target.id]
         relKey.pressed = false
         glissPotential = false
@@ -450,7 +487,7 @@ labelArray.forEach(label => {
 
     //mouse leave
     label.addEventListener('mouseleave', e => {
-        e.preventDefault()
+        // e.preventDefault()
         const relKey = keyObjects[e.target.id]
         relKey.pressed = false
         relKey.html.style.background = 'black'
@@ -524,7 +561,6 @@ window.addEventListener('keydown', e => {
         if (relKey.pressed === false) {
             relKey.play()
             relKey.pressed = true
-            glissPotential = true
             relKey.html.style.background = 'white'
             relKey.html.firstElementChild.style.color = 'black'
         }
@@ -537,11 +573,14 @@ window.addEventListener('keyup', e => {
 		default:
         const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
         relKey.pressed = false
-        glissPotential = false
         relKey.html.style.background = 'black'
         relKey.html.firstElementChild.style.color = 'white'
 	}
 })
+
+//music sheets
+const stand = document.querySelector('.sheet-div')
+stand.innerHTML = '123456789a123456789b123456789c123456789d'
 
 //keyObjects.forEach(key => {
 //    console.log(key.keybind)
