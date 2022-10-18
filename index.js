@@ -8,10 +8,12 @@ let glissPotential = false //whether glissando is possible or not
 // const major = [0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28, 29, 31, 33, 35, 36] //major key pattern
 // const minor = [0, 2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 19, 20, 22, 24, 26, 27, 29, 31, 32, 34, 36] //minor key pattern
 let signature = major //selected key signature
-let legend = ['S', 'X', 'E', 'D', 'C', 'R', 'F', 'V', 'T', 'G', 'B', 'Y', 'H', 'N', 'U', 'J', 'M', 'I', 'K', 'O', 'L', 'P', '|'] //keys to bind
+let legend = ['w', 's', 'x', 'e', 'd', 'c', 'r', 'f', 'v', 't', 'g', 'b', 'y', 'h', 'n', 'u', 'j', 'm', 'i', 'k', 'o', 'l', 'p', '|'] //keys to bind
 let legendCount = 0 //counter for upper array
 let signatureShift = 0
 const sigList = ['C', 'C sharp', 'D', 'E flat', 'E', 'F', 'F sharp', 'G', 'G sharp', 'A', 'B flat', 'B'] //signature list
+let binds = new Map()
+let shifted = false
 
 //set all keys to something
 function allKeys(something) {
@@ -23,13 +25,23 @@ function allKeys(something) {
 
 //mouse function
 function keyDown(key) {
+    // shifted ? key.shiftPlay() : key.play()
     key.play()
+    if (shifted) {
+        shifted = false
+        keyDown(keyObjects[key.id + 12])
+        shifted = true
+        key.shifted = true
+    }
     key.pressed = true
     key.html.style.background = 'white'
     key.html.firstElementChild.style.color = 'black'
 }
 
 function keyUp(key) {
+    if (key.shifted) {
+        keyUp(keyObjects[key.id + 12])
+    }
     key.pressed = false
     key.html.style.background = 'black'
     key.html.firstElementChild.style.color = 'white'
@@ -40,6 +52,7 @@ labelArray.forEach(label => {
     label.addEventListener('mousedown', e => {
         e.preventDefault()
         const relKey = keyObjects[e.target.id]
+        // const relKey = keyObjects[e.target.classList[1]]
         if (relKey.pressed === true) return
         keyDown(relKey)
         glissPotential = true
@@ -95,9 +108,16 @@ function activeKeyMapper(shift, signature) {
 }
 
 function activeKeyAssigner() {
+    binds = new Map()
     let legendCounter = 0
     keyObjects.forEach(key => {
-        (key.active) ? key.html.firstElementChild.innerHTML = legend[legendCounter++] : key.html.firstElementChild.innerHTML = ''
+        // (key.active) ? key.html.firstElementChild.innerHTML = legend[legendCounter++] : key.html.firstElementChild.innerHTML = ''
+        if(key.active) {
+            key.html.firstElementChild.innerHTML = legend[legendCounter]
+            binds.set('Key' + legend[legendCounter++].toUpperCase(), key)
+        } else {
+            key.html.firstElementChild.innerHTML = ''
+        }
     })
 }
 
@@ -113,6 +133,7 @@ function signatureShifter(shift) {
 //keyboard function
 window.addEventListener('keydown', e => {
     console.log(e.key, e.code)
+    console.log(shifted)
 	switch (e.code) {
         case 'Space':
 			e.preventDefault()
@@ -136,6 +157,12 @@ window.addEventListener('keydown', e => {
 			e.preventDefault()
 			activeKeyMapper(signatureShift, switchSig())
 			break;
+        case 'ShiftLeft':
+            shifted = true
+            break;
+        case 'ShiftRight':
+            shifted = true
+            break;
         case 'Digit1':	//CHORDS
             e.preventDefault()
             // playChord(chord1)
@@ -165,7 +192,8 @@ window.addEventListener('keydown', e => {
             chord4.classList.add('shake')
 			break;
 		default:
-            const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
+            // const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
+            const relKey = binds.get(e.code)
             if (!relKey || relKey.pressed === true) return
             keyDown(relKey)
 	}
@@ -178,8 +206,15 @@ function switchSig() {
 
 window.addEventListener('keyup', e => {
 	switch (e.code) {
+        case 'ShiftLeft':
+            shifted = false
+            break;
+        case 'ShiftRight':
+            shifted = false
+            break;
 		default:
-        const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
+        // const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
+        const relKey = binds.get(e.code)
         if (relKey) keyUp(relKey)
 	}
 })
