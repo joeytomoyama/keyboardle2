@@ -1,0 +1,44 @@
+    // {
+    //     "name": "chord1",
+    //     "id": -4,
+    //     "play": function() {
+    //         playSFX("C3")
+    //     },
+    //     "keybind": undefined,
+    //     "pressed": false,
+    //     "shifted": false,
+    //     "html": document.querySelector('')
+    // },
+    // {
+    //     "name": "chord2",
+    //     "id": -3,
+    //     "play": function() {
+    //         playSFX("C3")
+    //     },
+    //     "keybind": undefined,
+    //     "pressed": false,
+    //     "shifted": false,
+    //     "html": document.querySelector('')
+    // },
+    // {
+    //     "name": "chord3",
+    //     "id": -2,
+    //     "play": function() {
+    //         playSFX("C3")
+    //     },
+    //     "keybind": undefined,
+    //     "pressed": false,
+    //     "shifted": false,
+    //     "html": document.querySelector('')
+    // },
+    // {
+    //     "name": "chord4",
+    //     "id": -1,
+    //     "play": function() {
+    //         playSFX("C3")
+    //     },
+    //     "keybind": undefined,
+    //     "pressed": false,
+    //     "shifted": false,
+    //     "html": document.querySelector('')
+    // },

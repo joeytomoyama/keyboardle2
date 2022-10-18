@@ -1,15 +1,11 @@
-console.log('LOL')
 const labelArray = document.querySelectorAll('.label')
 const navbar = document.querySelector('.navbar')
-const chord1 = document.querySelector('.chord1')
-const chord2 = document.querySelector('.chord2')
-const chord3 = document.querySelector('.chord3')
-const chord4 = document.querySelector('.chord4')
 let glissPotential = false //whether glissando is possible or not
 // const major = [0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28, 29, 31, 33, 35, 36] //major key pattern
 // const minor = [0, 2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 19, 20, 22, 24, 26, 27, 29, 31, 32, 34, 36] //minor key pattern
 let signature = major //selected key signature
 let legend = ['w', 's', 'x', 'e', 'd', 'c', 'r', 'f', 'v', 't', 'g', 'b', 'y', 'h', 'n', 'u', 'j', 'm', 'i', 'k', 'o', 'l', 'p', '|'] //keys to bind
+let chordLegend = ['1', 'q', 'a', 'z']
 let legendCount = 0 //counter for upper array
 let signatureShift = 0
 const sigList = ['C', 'C sharp', 'D', 'E flat', 'E', 'F', 'F sharp', 'G', 'G sharp', 'A', 'B flat', 'B'] //signature list
@@ -25,58 +21,34 @@ function allKeys(something) {
 }
 
 //mouse function
-function keyDown(key) {
-    // shifted ? key.shiftPlay() : key.play()
-    key.play()
-    if (shifted) {
-        shifted = false
-        keyDown(keyObjects[key.id + 12])
-        shifted = true
-        key.shifted = true
-    }
-    key.pressed = true
-    key.html.style.background = 'white'
-    key.html.firstElementChild.style.color = 'black'
-}
-
-function keyUp(key) {
-    if (key.shifted) {
-        keyUp(keyObjects[key.id + 12])
-    }
-    key.pressed = false
-    key.html.style.background = 'black'
-    key.html.firstElementChild.style.color = 'white'
-}
-
 labelArray.forEach(label => {
     //mouse down
     label.addEventListener('mousedown', e => {
         e.preventDefault()
         const relKey = keyObjects[e.target.id]
-        // const relKey = keyObjects[e.target.classList[1]]
         if (relKey.pressed === true) return
-        keyDown(relKey)
+        shifted ? relKey.keyDown(true) : relKey.keyDown(false)
         glissPotential = true
     })
 
     //mouse up
     label.addEventListener('mouseup', e => {
         const relKey = keyObjects[e.target.id]
-        keyUp(relKey)
+        relKey.keyUp()
         glissPotential = false
     })
 
     //mouse leave
     label.addEventListener('mouseleave', e => {
         const relKey = keyObjects[e.target.id]
-        keyUp(relKey)
+        relKey.keyUp()
     })
 
     //glissando
     label.addEventListener('mouseover', e => {
         const relKey = keyObjects[e.target.id]
         if (glissPotential === false) return
-        keyDown(relKey)
+        shifted ? relKey.keyDown(true) : relKey.keyDown(false)
     })
 })
 
@@ -133,16 +105,10 @@ function signatureShifter(shift) {
 
 //keyboard function
 window.addEventListener('keydown', e => {
-    console.log(e.key, e.code)
-    console.log(shifted)
+    console.log(e.key)
+    console.log(e.code)
 	switch (e.code) {
-        case 'Space':
-			e.preventDefault()
-			break;
-		case 'Enter':
-			e.preventDefault()
-			break;
-		case 'ArrowLeft':
+        case 'ArrowLeft':
 			e.preventDefault
 			activeKeyMapper(signatureShifter(--signatureShift), signature)
 			break;
@@ -164,45 +130,52 @@ window.addEventListener('keydown', e => {
         case 'ShiftRight':
             shifted = true
             break;
+        case 'Space':
+            e.preventDefault()
+            playSFX('bass')
+            console.log('SPACEeeee')
+            break;
+        case 'Enter':
+            e.preventDefault()
+            playSFX('clap')
+            console.log('ENTERrrrr')
+            break;
+        case 'Backquote':
+            e.preventDefault()
+            playSFX('hihat')
+            console.log('BACK')
+            break;
         case 'Digit1':	//CHORDS
             e.preventDefault()
-            // playChord(chord1)
-            chord1.classList.remove('shake')
-            chord1.offsetWidth
-            chord1.classList.add('shake')
+            // chordObjects[0].play(chord1)
+            chordHandler.playChord(0)
             break;
 		case 'KeyQ':
 			e.preventDefault()
-			// playChord(chord2)
-            chord2.classList.remove('shake')
-            chord2.offsetWidth
-            chord2.classList.add('shake')
+			// chordObjects[1].play(chord2)
+            chordHandler.playChord(1)
 			break;
 		case 'KeyA':
 			e.preventDefault()
-			// playChord(chord3)
-            chord3.classList.remove('shake')
-            chord3.offsetWidth
-            chord3.classList.add('shake')
+			// chordObjects[2].play(chord3)
+            chordHandler.playChord(2)
 			break;
 		case 'KeyZ':
 			e.preventDefault()
-			// playChord(chord4)
-            chord4.classList.remove('shake')
-            chord4.offsetWidth
-            chord4.classList.add('shake')
+			// chordObjects[3].play(chord4)
+            chordHandler.playChord(3)
 			break;
 		default:
             // const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
             const relKey = binds.get(e.code)
             if (!relKey || relKey.pressed === true) return
-            keyDown(relKey)
+            shifted ? relKey.keyDown(true) : relKey.keyDown(false)
 	}
 })
 
 function switchSig() {
-    signatureShift = signatureShift === major ? minor : major
-    return signatureShift
+    signature = signature === major ? minor : major
+    return signature
 }
 
 window.addEventListener('keyup', e => {
@@ -216,7 +189,7 @@ window.addEventListener('keyup', e => {
 		default:
         // const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
         const relKey = binds.get(e.code)
-        if (relKey) keyUp(relKey)
+        if (relKey) relKey.keyUp()
 	}
 })
 
@@ -237,6 +210,7 @@ document.querySelectorAll('.page').forEach(page => {
         signatureShift = selectedSong.signature[0]
         activeKeyMapper(signatureShifter(signatureShift), selectedSong.signature[1])
         document.querySelector('.signature-div').innerHTML = selectedSong.sigLiteral
+        chordHandler.setChords(selectedSong.chords)
     })
 })
 
@@ -253,10 +227,64 @@ function stringToArray(string) {
 //})
 
 //chords
+const chordHandler = {
+    enabled: false,
+    chordObjects: chordObjectsArray,
+    setChords: function(string) {
+        string = string.split(/\s/gi)
+        if (string.length !== 4) {
+            this.chordObjects.forEach(chord => {
+                chord.label.innerHTML = ''
+            })
+            this.enabled = false
+            return
+        }
+        this.enabled = true
+        string = string.map(chord => {
+            return chord.split(/_/gi)
+        })
+        for (let i = 0; i < this.chordObjects.length; i++) {
+            this.chordObjects[i].audioArray = string[i].map(note => {return new Audio(`./notes/${note}.mp3`)})
+            this.chordObjects[i].label.innerHTML = chordLegend[i]
+        }
 
-//chord animations
-// chord1.addEventListener('click', () => {
-//     chord1.style.animation = 'shake 3s'
-// })
+    },
+    playChord: function(chordIndex) {
+        if (!this.enabled) return
+        this.chordObjects.forEach(chord => {
+            chord.audioArray.forEach(audio => {
+                audio.pause()
+                audio.currentTime = 0
+            })
+        })
+        this.chordObjects[chordIndex].audioArray.forEach(audio => audio.play())
+        this.chordObjects.forEach(chord => chord.html.classList.remove('shake'))
+        this.chordObjects[chordIndex].html.offsetWidth
+        this.chordObjects[chordIndex].html.classList.add('shake')
+    }
+}
 
 activeKeyAssigner()
+
+const scrollHandler = {
+    scrollCounter: 0,
+    scrollLimit: 0,
+    currentScroll: 0,
+    scrollListener: function() {
+        window.addEventListener('scroll', () => {
+            if(++this.scrollCounter % 5 === 0) return
+            this.scrollLimit = document.body.offsetHeight - window.innerHeight
+            this.currentScroll = (window.scrollY / this.scrollLimit).toFixed(1)
+            if (this.currentScroll < 0.4) {
+                switchBlack()
+            } else if (this.currentScroll >= 0.4 && this.currentScroll < 0.7) {
+                switchWhite()
+            } else if (this.currentScroll >= 0.7) {
+                switchBlack()
+            }
+            // console.log(this.currentScroll)
+        })
+    }
+}
+
+scrollHandler.scrollListener()
