@@ -1,3 +1,4 @@
+console.log('LOL')
 const labelArray = document.querySelectorAll('.label')
 const navbar = document.querySelector('.navbar')
 const chord1 = document.querySelector('.chord1')
