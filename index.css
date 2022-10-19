@@ -272,6 +272,9 @@ footer {
     /* border-top: solid 1px var(--secColor);
     border-bottom: solid 1px var(--secColor); */
 }
+.text {
+    width: 40vw;
+}
 
 .pagethree {
     width: 100vw;
@@ -340,7 +343,7 @@ footer {
     }
 }
 
-@keyframes shake {
+/* @keyframes rotate {
     0% { transform: rotate(3deg); }
     10% { transform: rotate(-2.9deg); }
     20% { transform: rotate(2.8deg); }
@@ -353,7 +356,7 @@ footer {
     90% { transform: rotate(-2.1deg); }
     100% { transform: rotate(2deg); }
 }
-@keyframes shake2 {
+@keyframes rotate2 {
     0% { transform: rotate(2deg); }
     10% { transform: rotate(-1.9deg); }
     20% { transform: rotate(1.8deg); }
@@ -366,7 +369,7 @@ footer {
     90% { transform: rotate(-1.1deg); }
     100% { transform: rotate(1deg); }
 }
-@keyframes shake3 {
+@keyframes rotate3 {
     0% { transform: rotate(1deg); }
     10% { transform: rotate(-0.9deg); }
     20% { transform: rotate(0.8deg); }
@@ -378,9 +381,9 @@ footer {
     80% { transform: rotate(0.2deg); }
     90% { transform: rotate(-0.1deg); }
     100% { transform: rotate(0deg); }
-}
+} */
 
-@keyframes trans {
+@keyframes shake {
     0% { transform: translate(3px); }
     10% { transform: translate(-2.9px); }
     20% { transform: translate(2.8px); }
@@ -393,7 +396,7 @@ footer {
     90% { transform: translate(-2.1px); }
     100% { transform: translate(2px); }
 }
-@keyframes trans2 {
+@keyframes shake2 {
     0% { transform: translate(2px); }
     10% { transform: translate(-1.9px); }
     20% { transform: translate(1.8px); }
@@ -406,7 +409,7 @@ footer {
     90% { transform: translate(-1.1px); }
     100% { transform: translate(1px); }
 }
-@keyframes trans3 {
+@keyframes shake3 {
     0% { transform: translate(1px); }
     10% { transform: translate(-0.9px); }
     20% { transform: translate(0.8px); }
@@ -419,9 +422,6 @@ footer {
     90% { transform: translate(-0.1px); }
     100% { transform: translate(0px); }
 }
-/* .shake {
-    animation: shake 1s, shake2 1s 1s, shake3 1s 2s;
-} */
 .shake {
-    animation: trans 1s, trans2 1s 1s, trans3 1s 2s;
+    animation: shake 1s, shake2 1s 1s, shake3 1s 2s;
 }

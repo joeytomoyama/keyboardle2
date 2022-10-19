@@ -285,33 +285,36 @@ const chordHandler = {
 }
 
 
-const scrollHandler = {
-    scrollCounter: 0,
-    scrollLimit: 0,
-    currentScroll: 0,
-    scrollListener: function() {
-        window.addEventListener('scroll', () => {
-            if(++this.scrollCounter % 5 !== 0) return
-            this.scrollLimit = document.body.offsetHeight - window.innerHeight
-            this.currentScroll = (window.scrollY / this.scrollLimit).toFixed(1)
-            if (this.currentScroll < 0.4) {
-                switchBlack()
-            } else if (this.currentScroll >= 0.4 && this.currentScroll < 0.7) {
-                switchWhite()
-            } else if (this.currentScroll >= 0.7) {
-                switchBlack()
-            }
-            console.log(this.currentScroll)
-        })
-    }
-}
+// const scrollHandler = {
+//     scrollCounter: 0,
+//     scrollLimit: 0,
+//     currentScroll: 0,
+//     scrollListener: function() {
+//         window.addEventListener('scroll', () => {
+//             if(++this.scrollCounter % 5 !== 0) return
+//             this.scrollLimit = document.body.offsetHeight - window.innerHeight
+//             this.currentScroll = (window.scrollY / this.scrollLimit).toFixed(1)
+//             if (this.currentScroll < 0.4) {
+//                 switchBlack()
+//             } else if (this.currentScroll >= 0.4 && this.currentScroll < 0.7) {
+//                 switchWhite()
+//             } else if (this.currentScroll >= 0.7) {
+//                 switchBlack()
+//             }
+//             console.log(this.currentScroll)
+//         })
+//     }
+// }
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
+        // console.log(entry)
         if (entry.isIntersecting) {
             entry.target.classList.add('show')
+            if (entry.target.id === 'whiteText') switchWhite()
         } else {
             entry.target.classList.remove('show')
+            if (entry.target.id === 'whiteText') switchBlack()
         }
     })
 })
@@ -320,4 +323,4 @@ const hiddenElements = document.querySelectorAll('.hidden')
 hiddenElements.forEach(element => observer.observe(element))
 
 activeKeyAssigner()
-scrollHandler.scrollListener()
+// scrollHandler.scrollListener()
