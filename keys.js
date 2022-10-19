@@ -19,8 +19,8 @@ function switchWhite() {
 function keysDown(shift) {
     playSFX(this.name)
     this.pressed = true
-    this.html.style.background = secColor
-    this.html.firstElementChild.style.color = priColor
+    this.html.style.background = 'white'
+    this.html.firstElementChild.style.color = 'black'
     if (shift) {
         keyObjects[this.id + 12].keyDown()
         this.shifted = true
@@ -28,9 +28,9 @@ function keysDown(shift) {
 }
 function keysUp() {
     this.pressed = false
-    this.html.style.background = priColor
-    this.html.firstElementChild.style.color = secColor
-    if (this.shifted) {
+    this.html.style.background = 'black'
+    this.html.firstElementChild.style.color = 'white'
+    if (this.shifted && keyObjects[this.id + 12].type === 'key') {
         keyObjects[this.id + 12].keyUp()
     }
 }
@@ -479,6 +479,116 @@ const keyObjects = [
         pressed: false,
         shifted: false,
         html: document.querySelector('.C6')
+    },
+    {
+        type: 'ghostKey',
+        name: "CS6",
+        id: 37,
+        keyDown: function() {
+            // playSFX("CS6")
+            console.log('phantom key pressed')
+        },
+        active: 0,
+    },
+    {
+        type: 'ghostKey',
+        name: "D6",
+        id: 38,
+        keyDown: function() {
+            // playSFX("D6")
+            console.log('phantom key pressed')
+        },
+        active: 1,
+    },
+    {
+        type: 'phantomKey',
+        name: "DS6",
+        id: 39,
+        keyDown: function() {
+            // playSFX("DS6")
+            console.log('phantom key pressed')
+        }
+    },
+    {
+        type: 'phantomKey',
+        name: "E6",
+        id: 40,
+        keyDown: function() {
+            // playSFX("E6")
+            console.log('phantom key pressed')
+        }
+    },
+    {
+        type: 'phantomKey',
+        name: "F6",
+        id: 41,
+        keyDown: function() {
+            // playSFX("F6")
+            console.log('phantom key pressed')
+        }
+    },
+    {
+        type: 'phantomKey',
+        name: "FS6",
+        id: 42,
+        keyDown: function() {
+            // playSFX("FS6")
+            console.log('phantom key pressed')
+        }
+    },
+    {
+        type: 'phantomKey',
+        name: "G6",
+        id: 43,
+        keyDown: function() {
+            // playSFX("G6")
+            console.log('phantom key pressed')
+        }
+    },
+    {
+        type: 'phantomKey',
+        name: "GS6",
+        id: 44,
+        keyDown: function() {
+            // playSFX("GS6")
+            console.log('phantom key pressed')
+        }
+    },
+    {
+        type: 'phantomKey',
+        name: "A6",
+        id: 45,
+        keyDown: function() {
+            // playSFX("A6")
+            console.log('phantom key pressed')
+        }
+    },
+    {
+        type: 'phantomKey',
+        name: "AS6",
+        id: 46,
+        keyDown: function() {
+            // playSFX("AS6")
+            console.log('phantom key pressed')
+        }
+    },
+    {
+        type: 'phantomKey',
+        name: "B6",
+        id: 47,
+        keyDown: function() {
+            // playSFX("B6")
+            console.log('phantom key pressed')
+        }
+    },
+    {
+        type: 'phantomKey',
+        name: "C7",
+        id: 48,
+        keyDown: function() {
+            // playSFX("C7")
+            console.log('phantom key pressed')
+        }
     }
 ]
 

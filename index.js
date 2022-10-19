@@ -5,7 +5,7 @@ let glissPotential = false //whether glissando is possible or not
 // const minor = [0, 2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 19, 20, 22, 24, 26, 27, 29, 31, 32, 34, 36] //minor key pattern
 let signature = major //selected key signature
 let legend = ['w', 's', 'x', 'e', 'd', 'c', 'r', 'f', 'v', 't', 'g', 'b', 'y', 'h', 'n', 'u', 'j', 'm', 'i', 'k', 'o', 'l', 'p', '|'] //keys to bind
-let chordLegend = ['1', 'q', 'a', 'z']
+let chordLegend = ['1', 'q', 'a', 'z'] //keys to bind to chords
 let legendCount = 0 //counter for upper array
 let signatureShift = 0
 const sigList = ['C', 'C sharp', 'D', 'E flat', 'E', 'F', 'F sharp', 'G', 'G sharp', 'A', 'B flat', 'B'] //signature list
@@ -71,7 +71,12 @@ function activeKeyMapper(shift, signature) {
     signature.forEach(note => {
         keyObjects[(note + shift) % 36].active = 1
     })
-    if (keyObjects[0].active) keyObjects[keyObjects.length - 1].active = 1
+    if (keyObjects[0].active) {
+        keyObjects[36].active = 1
+    } else {
+        keyObjects[37].active = 1
+        // keyObjects[39].active = 1
+    }
 
     activeKeyAssigner()
     //keyObjects.forEach(key => {
@@ -84,12 +89,12 @@ function activeKeyAssigner() {
     binds = new Map()
     let legendCounter = 0
     keyObjects.forEach(key => {
-        // (key.active) ? key.html.firstElementChild.innerHTML = legend[legendCounter++] : key.html.firstElementChild.innerHTML = ''
+        if (key.type === 'phantomKey') return
         if(key.active) {
-            key.html.firstElementChild.innerHTML = legend[legendCounter]
+            if (key.type === 'key') key.html.firstElementChild.innerHTML = legend[legendCounter]
             binds.set('Key' + legend[legendCounter++].toUpperCase(), key)
         } else {
-            key.html.firstElementChild.innerHTML = ''
+            if (key.type === 'key') key.html.firstElementChild.innerHTML = ''
         }
     })
 }
@@ -105,8 +110,8 @@ function signatureShifter(shift) {
 
 //keyboard function
 window.addEventListener('keydown', e => {
-    console.log(e.key)
-    console.log(e.code)
+    // console.log(e.key)
+    // console.log(e.code)
 	switch (e.code) {
         case 'ArrowLeft':
 			e.preventDefault
@@ -133,41 +138,35 @@ window.addEventListener('keydown', e => {
         case 'Space':
             e.preventDefault()
             playSFX('bass')
-            console.log('SPACEeeee')
             break;
         case 'Enter':
             e.preventDefault()
             playSFX('clap')
-            console.log('ENTERrrrr')
             break;
         case 'Backquote':
             e.preventDefault()
             playSFX('hihat')
-            console.log('BACK')
             break;
         case 'Digit1':	//CHORDS
             e.preventDefault()
-            // chordObjects[0].play(chord1)
             chordHandler.playChord(0)
             break;
 		case 'KeyQ':
 			e.preventDefault()
-			// chordObjects[1].play(chord2)
             chordHandler.playChord(1)
 			break;
 		case 'KeyA':
 			e.preventDefault()
-			// chordObjects[2].play(chord3)
             chordHandler.playChord(2)
 			break;
 		case 'KeyZ':
 			e.preventDefault()
-			// chordObjects[3].play(chord4)
             chordHandler.playChord(3)
 			break;
 		default:
             // const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
             const relKey = binds.get(e.code)
+            console.log(relKey)
             if (!relKey || relKey.pressed === true) return
             shifted ? relKey.keyDown(true) : relKey.keyDown(false)
 	}
@@ -186,10 +185,26 @@ window.addEventListener('keyup', e => {
         case 'ShiftRight':
             shifted = false
             break;
+        case 'Digit1':	//CHORDS
+            e.preventDefault()
+            chordHandler.releaseChord(0)
+            break;
+		case 'KeyQ':
+			e.preventDefault()
+            chordHandler.releaseChord(1)
+			break;
+		case 'KeyA':
+			e.preventDefault()
+            chordHandler.releaseChord(2)
+			break;
+		case 'KeyZ':
+			e.preventDefault()
+            chordHandler.releaseChord(3)
+			break;
 		default:
         // const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
         const relKey = binds.get(e.code)
-        if (relKey) relKey.keyUp()
+        if (relKey && relKey.type === 'key') relKey.keyUp()
 	}
 })
 
@@ -250,21 +265,25 @@ const chordHandler = {
 
     },
     playChord: function(chordIndex) {
-        if (!this.enabled) return
+        const chordInQuestion = this.chordObjects[chordIndex]
+        if (!this.enabled || chordInQuestion.pressed) return
         this.chordObjects.forEach(chord => {
             chord.audioArray.forEach(audio => {
                 audio.pause()
                 audio.currentTime = 0
             })
         })
-        this.chordObjects[chordIndex].audioArray.forEach(audio => audio.play())
+        chordInQuestion.audioArray.forEach(audio => audio.play())
         this.chordObjects.forEach(chord => chord.html.classList.remove('shake'))
-        this.chordObjects[chordIndex].html.offsetWidth
-        this.chordObjects[chordIndex].html.classList.add('shake')
+        chordInQuestion.html.offsetWidth
+        chordInQuestion.html.classList.add('shake')
+        chordInQuestion.pressed = true
+    },
+    releaseChord: function(chordIndex) {
+        this.chordObjects[chordIndex].pressed = false
     }
 }
 
-activeKeyAssigner()
 
 const scrollHandler = {
     scrollCounter: 0,
@@ -272,7 +291,7 @@ const scrollHandler = {
     currentScroll: 0,
     scrollListener: function() {
         window.addEventListener('scroll', () => {
-            if(++this.scrollCounter % 5 === 0) return
+            if(++this.scrollCounter % 5 !== 0) return
             this.scrollLimit = document.body.offsetHeight - window.innerHeight
             this.currentScroll = (window.scrollY / this.scrollLimit).toFixed(1)
             if (this.currentScroll < 0.4) {
@@ -282,9 +301,23 @@ const scrollHandler = {
             } else if (this.currentScroll >= 0.7) {
                 switchBlack()
             }
-            // console.log(this.currentScroll)
+            console.log(this.currentScroll)
         })
     }
 }
 
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show')
+        } else {
+            entry.target.classList.remove('show')
+        }
+    })
+})
+
+const hiddenElements = document.querySelectorAll('.hidden')
+hiddenElements.forEach(element => observer.observe(element))
+
+activeKeyAssigner()
 scrollHandler.scrollListener()
