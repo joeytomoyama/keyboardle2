@@ -131,3 +131,11 @@ songList.set("faded", {
     "sigLiteral": "G major",
     "chords": "2e_2g_2b 2c_2e_2g 2g_2b_3d 2d_2f-_2a"
 })
+songList.set('test', {
+    "key": "test",
+    "title": "test",
+    "sheets": `G3 G3 G3 B3 | E4 E4 E4 D4`,
+    "signature": [7, major],
+    "sigLiteral": "G major",
+    "chords": "2e_2g_2b 2c_2e_2g 2g_2b_3d 2d_2f-_2a"
+})

@@ -115,10 +115,6 @@ footer {
 .logo {
     animation: logo 1s ease;
 }
-.flex-centerer {
-    width: 100vw;
-    height: 100vh;
-}
 .flex-column {
     flex-direction: column;
     width: 100vw;
@@ -140,6 +136,8 @@ footer {
 }
 .counter-div {
     height: 2.5rem;
+    width: 10rem;
+    justify-content: flex-end;
     line-height: 2.5rem;
     text-align: center;
 }
@@ -147,6 +145,7 @@ footer {
     background-color: var(--secColor);
     width: 36rem;
     height: 2.5rem;
+    justify-content: flex-start;
     color: var(--priColor);
     font-size: 1.3rem;
     padding-left: 1.2rem;
@@ -158,41 +157,43 @@ footer {
 }
 .signature-div {
     height: 2.5rem;
+    width: 10rem;
+    justify-content: flex-start;
     line-height: 2.5rem;
     text-align: center;
     cursor: pointer;
 }
-/* .sig-sides {
-    margin-top: 5vw;
-    margin-bottom: 5vw;
-    background-color: red;
-} */
-.sig-arrow {
+.sig-sides {
     cursor: pointer;
+}
+.sig-arrow {
     width: 25px;
     height: 25px;
     border-top: 3px solid var(--secColor);
     border-left: 3px solid var(--secColor);
+    position: absolute;
 }
 .sig-left {
+    width: 50px;
+    height: 50px;
 }
 .sig-arrow-left {
     transform: rotate(-45deg);
     transition: 100ms linear;
 }
-.sig-arrow-left:hover {
+.sig-left:hover .sig-arrow-left {
     transform: translate(-10px, 0) rotate(-45deg);
-    transition: 100ms linear;
 }
 .sig-right {
+    width: 50px;
+    height: 50px;
 }
 .sig-arrow-right {
     transform: rotate(135deg);
     transition: 100ms linear;
 }
-.sig-arrow-right:hover {
+.sig-right:hover .sig-arrow-right {
     transform: translate(10px, 0) rotate(135deg);
-    transition: 100ms linear;
 }
 .piano {
     width: 65vw;
@@ -325,6 +326,7 @@ footer {
     margin: .5rem;
     background-color: var(--priColor);
     color: var(--priColor);
+    /* color:rgba(0, 0, 0, 0) */
     /* font-size: 0; */
     overflow: hidden;
     white-space: nowrap;

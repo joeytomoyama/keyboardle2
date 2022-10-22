@@ -4,12 +4,13 @@ let glissPotential = false //whether glissando is possible or not
 // const major = [0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28, 29, 31, 33, 35, 36] //major key pattern
 // const minor = [0, 2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 19, 20, 22, 24, 26, 27, 29, 31, 32, 34, 36] //minor key pattern
 let signature = major //selected key signature
-let legend = ['w', 's', 'x', 'e', 'd', 'c', 'r', 'f', 'v', 't', 'g', 'b', 'y', 'h', 'n', 'u', 'j', 'm', 'i', 'k', 'o', 'l', 'p', '|'] //keys to bind
+let keyLegend = ['w', 's', 'x', 'e', 'd', 'c', 'r', 'f', 'v', 't', 'g', 'b', 'y', 'h', 'n', 'u', 'j', 'm', 'i', 'k', 'o', 'l', '|']//, '|'] //keys to bind
 let chordLegend = ['1', 'q', 'a', 'z'] //keys to bind to chords
 let legendCount = 0 //counter for upper array
 let signatureShift = 0
 const sigList = ['C', 'C sharp', 'D', 'E flat', 'E', 'F', 'F sharp', 'G', 'G sharp', 'A', 'B flat', 'B'] //signature list
 let binds = new Map()
+// let reverseBinds = new Map()
 let shifted = false
 
 //set all keys to something
@@ -56,11 +57,11 @@ document.querySelector('.piano').addEventListener('mouseleave', e => {
     glissPotential = false
 })
 
-document.querySelector('.sig-arrow-left').addEventListener('click', () => {
+document.querySelector('.sig-left').addEventListener('click', () => {
     activeKeyMapper(signatureShifter(--signatureShift), signature)
 })
 
-document.querySelector('.sig-arrow-right').addEventListener('click', () => {
+document.querySelector('.sig-right').addEventListener('click', () => {
     activeKeyMapper(signatureShifter(++signatureShift), signature)
 })
 
@@ -78,6 +79,8 @@ function activeKeyMapper(shift, signature) {
         // keyObjects[39].active = 1
     }
 
+    stand.signature.innerHTML = `${noteArr[signatureShift]} ${signature === major ? 'major' : 'minor'}`
+
     activeKeyAssigner()
     //keyObjects.forEach(key => {
     //    console.log(key.name, key.active)
@@ -87,12 +90,14 @@ function activeKeyMapper(shift, signature) {
 
 function activeKeyAssigner() {
     binds = new Map()
+    // reverseBinds = new Map()
     let legendCounter = 0
     keyObjects.forEach(key => {
         if (key.type === 'phantomKey') return
-        if(key.active) {
-            if (key.type === 'key') key.html.firstElementChild.innerHTML = legend[legendCounter]
-            binds.set('Key' + legend[legendCounter++].toUpperCase(), key)
+        if (key.active) {
+            if (key.type === 'key') key.html.firstElementChild.innerHTML = keyLegend[legendCounter]
+            binds.set('Key' + keyLegend[legendCounter++].toUpperCase(), key)
+            // reverseBinds.set(key, 'Key' + keyLegend[legendCounter++].toUpperCase())
         } else {
             if (key.type === 'key') key.html.firstElementChild.innerHTML = ''
         }
@@ -164,11 +169,10 @@ window.addEventListener('keydown', e => {
             chordHandler.playChord(3)
 			break;
 		default:
-            // const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
             const relKey = binds.get(e.code)
-            console.log(relKey)
             if (!relKey || relKey.pressed === true) return
             shifted ? relKey.keyDown(true) : relKey.keyDown(false)
+            stand.checkNote(e.code)
 	}
 })
 
@@ -202,7 +206,6 @@ window.addEventListener('keyup', e => {
             chordHandler.releaseChord(3)
 			break;
 		default:
-        // const relKey = keyObjects.find(key => key.html.firstElementChild.innerHTML === e.code[e.code.length - 1])
         const relKey = binds.get(e.code)
         if (relKey && relKey.type === 'key') relKey.keyUp()
 	}
@@ -221,25 +224,69 @@ let selectedSong = undefined
 document.querySelectorAll('.page').forEach(page => {
     page.addEventListener('click', e => {
         selectedSong = songList.get(e.target.id)
-        console.log(selectedSong)
         signatureShift = selectedSong.signature[0]
         activeKeyMapper(signatureShifter(signatureShift), selectedSong.signature[1])
-        document.querySelector('.signature-div').innerHTML = selectedSong.sigLiteral
-        chordHandler.setChords(selectedSong.chords)
+        stand.prepareSong(selectedSong)
     })
 })
 
+const pianoLegend = [
+    'C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3',
+    'C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4',
+    'C5', 'D5', 'E5', 'F5', 'G5', 'A5', 'B5',
+    'C6', '|'
+  ]
+
+const piano2key = new Map()
+
 //music sheets
-const stand = document.querySelector('.sheet-div')
-stand.innerHTML = '123456789a123456789b123456789c123456789d'
+const stand = {
+    visibleSheets: '',
+    cs: new Array(),
+    pastSheets: new Array(),
+    prepareSong: function(song) {
+        for (let i = 0; i < keyLegend.length; i++) {
+            piano2key.set(pianoLegend[i], keyLegend[i])
+        }
+        this.cs = song.sheets.trim().split(/\s+/gi).map(note => piano2key.get(note))
+        this.pipes = 0
+        this.cs.forEach(note => {
+            if (note !== '|') this.pipes++
+        })
+        this.updateVisible()
 
-function stringToArray(string) {
-    return string.trim().split(/\s+/gi)
+        this.signature.innerHTML = song.sigLiteral
+        this.counter.innerHTML = this.pipes
+        this.sheet.innerHTML = this.visibleSheets
+        chordHandler.setChords(selectedSong.chords)
+    },
+    updateVisible: function() {
+        this.visibleSheets = ''
+        for (let i = 0; i < 20; i++) {
+            if (this.cs[i]) this.visibleSheets = this.visibleSheets.concat(this.cs[i] + ' ')
+        }
+        this.sheet.innerHTML = this.visibleSheets.trim()
+    },
+    checkNote: function(key) {
+        if (key === 'Key' + this.cs[0].toUpperCase()) this.passNote()
+    },
+    passNote: function() {
+        this.pastSheets.push(this.cs.shift())
+        if (this.pastSheets.length >= 10) this.pastSheets.shift()
+        while (this.cs[0] === '|') this.pastSheets.push(this.cs.shift())
+        this.updateVisible()
+        this.counter.innerHTML = --this.pipes
+        console.log(this.pastSheets)
+    },
+    sheet: document.querySelector('.sheet-div'),
+    signature: document.querySelector('.signature-div'),
+    counter: document.querySelector('.counter-div'),
+    pipes: 0
 }
+// stand.sheet.innerHTML = '123456789a123456789b123456789c123456789d' 
 
-//keyObjects.forEach(key => {
-//    console.log(key.keybind)
-//})
+
+const noteArr = ['C', 'C sharp', 'D', 'E flat', 'E', 'F', 'F sharp', 'G', 'G sharp', 'A', 'B flat', 'B']
 
 //chords
 const chordHandler = {
@@ -284,7 +331,6 @@ const chordHandler = {
     }
 }
 
-
 // const scrollHandler = {
 //     scrollCounter: 0,
 //     scrollLimit: 0,
@@ -312,6 +358,7 @@ const observer = new IntersectionObserver(entries => {
         if (entry.isIntersecting) {
             entry.target.classList.add('show')
             if (entry.target.id === 'whiteText') switchWhite()
+            // else switchBlack()
         } else {
             entry.target.classList.remove('show')
             if (entry.target.id === 'whiteText') switchBlack()
@@ -322,5 +369,5 @@ const observer = new IntersectionObserver(entries => {
 const hiddenElements = document.querySelectorAll('.hidden')
 hiddenElements.forEach(element => observer.observe(element))
 
-activeKeyAssigner()
+activeKeyMapper(signatureShift, signature)
 // scrollHandler.scrollListener()
