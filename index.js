@@ -93,7 +93,7 @@ function activeKeyAssigner() {
     // reverseBinds = new Map()
     let legendCounter = 0
     keyObjects.forEach(key => {
-        if (key.type === 'phantomKey') return
+        if (key.type !== 'key') return
         if (key.active) {
             if (key.type === 'key') key.html.firstElementChild.innerHTML = keyLegend[legendCounter]
             binds.set('Key' + keyLegend[legendCounter++].toUpperCase(), key)
@@ -115,8 +115,10 @@ function signatureShifter(shift) {
 
 //keyboard function
 window.addEventListener('keydown', e => {
+    if (e.getModifierState("CapsLock")) shifted = true
+    else shifted = false
     // console.log(e.key)
-    // console.log(e.code)
+    console.log(e.code)
 	switch (e.code) {
         case 'ArrowLeft':
 			e.preventDefault
@@ -268,6 +270,7 @@ const stand = {
         this.sheet.innerHTML = this.visibleSheets.trim()
     },
     checkNote: function(key) {
+        if (!selectedSong) return
         if (key === 'Key' + this.cs[0].toUpperCase()) this.passNote()
     },
     passNote: function() {
@@ -357,11 +360,10 @@ const observer = new IntersectionObserver(entries => {
         // console.log(entry)
         if (entry.isIntersecting) {
             entry.target.classList.add('show')
-            if (entry.target.id === 'whiteText') switchWhite()
-            // else switchBlack()
+            // if (entry.target.id === 'whiteText') switchWhite()
         } else {
             entry.target.classList.remove('show')
-            if (entry.target.id === 'whiteText') switchBlack()
+            // if (entry.target.id === 'whiteText') switchBlack()
         }
     })
 })

@@ -19,8 +19,8 @@ function switchWhite() {
 function keysDown(shift) {
     playSFX(this.name)
     this.pressed = true
-    this.html.style.background = 'white'
-    this.html.firstElementChild.style.color = 'black'
+    this.html.style.background = secColor//'white'
+    this.html.firstElementChild.style.color = priColor//'black'
     if (shift) {
         keyObjects[this.id + 12].keyDown()
         this.shifted = true
@@ -28,8 +28,8 @@ function keysDown(shift) {
 }
 function keysUp() {
     this.pressed = false
-    this.html.style.background = 'black'
-    this.html.firstElementChild.style.color = 'white'
+    this.html.style.background = priColor//'black'
+    this.html.firstElementChild.style.color = secColor//'white'
     if (this.shifted && keyObjects[this.id + 12].type === 'key') {
         keyObjects[this.id + 12].keyUp()
     }
@@ -589,8 +589,38 @@ const keyObjects = [
             // playSFX("C7")
             console.log('phantom key pressed')
         }
+    }]/*
+    {
+        type: 'percussion',
+        name: "hihat",
+        id: 49,
+        keyDown: function() {
+            // playSFX("AS6")
+        },
+        pressed: false,
+        html: document.querySelector('.hihat')
+    },
+    {
+        type: 'percussion',
+        name: "bass",
+        id: 50,
+        keyDown: function() {
+            // playSFX("B6")
+        },
+        pressed: false,
+        html: document.querySelector('.bass')
+    },
+    {
+        type: 'percussion',
+        name: "tom",
+        id: 51,
+        keyDown: function() {
+            // playSFX("C7")
+        },
+        pressed: false,
+        html: document.querySelector('.tom')
     }
-]
+]*/
 
 const chordObjectsArray = [
     {

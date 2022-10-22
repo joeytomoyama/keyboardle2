@@ -133,6 +133,7 @@ footer {
 }
 .flex-row3 {
     width: 80vw;
+    gap: 1vw;
 }
 .counter-div {
     height: 2.5rem;
@@ -205,7 +206,8 @@ footer {
     display: flex;
     justify-content: center;
     border: 2px solid;
-    background-color: black;
+    /* background-color: black; */
+    background-color: var(--priColor);
 }
 .wKey {
     flex-grow: 1;
@@ -266,6 +268,18 @@ footer {
     border-top-right-radius: var(--border);
     border-bottom-right-radius: var(--border);
     border-color: var(--secColor);
+}
+.hihat, .tom {
+    width: 3vw;
+    height: 2rem;
+    border: 2px solid white;
+    border-radius: 0 0 10px 10px;
+}
+.bass {
+    width: 10vw;
+    height: 2rem;
+    border: 2px solid white;
+    border-radius: 0 0 10px 10px;
 }
 
 .pagetwo {

@@ -50,7 +50,7 @@ songList.set("riverFlowsInYou", {
     B3 C4 D4 E4 C4 B3 A3 G3 A3 E3 A3 B3 C4 C4 D4 E4 D4 C4 B3 A3 C4 A4 G4 A4 A3 G4 A4 A3 E4 A4 A3 D4 A3 |
     B4 C5 D5 E5 C6 B5 E5 B5 C6 B5 A5 G5 | A5 A4 B4 C5 E4 A4 C5 D5 | E5 E4 C5 D5 C5 B4 A4 B4 A4 G4 |
     A5 A4 E5 A4 A5 B5 A5 G5 A5 A4 E5 A4 A5 B5 A5 G5 | A5 B5 C6 B5 A5 G5 B4 A5 B5 A5 G5 |`,
-    "signature": [6, major],
+    "signature": [6, minor],
     "sigLiteral": "A major",
     "chords": ""
 })
@@ -58,10 +58,10 @@ songList.set("littleTalks", {
     "key": "littleTalks",
     "title": "little talks",
     "sheets": `D4 | F4 F4 F4 D4 F4 D4 F4 | A4 | F4 F4 F4 D4 F4 E4 D4 | C4 D4 E4 | F4 F4 F4 D4 F4 D4 F4 | 
-    A4 | F4 F4 F4 A4 F4 E4 D4 | D4 | F5 F5 F5 E5 E5 F5 E5 D5 D5 | 
-    D5 E5 F5 E5 D4 | F4 F4 F4 F4 G4 D4 D4 D4 D4 | D4 | 
+    A4 | F4 F4 F4 A4 F4 E4 D4 | | F5 F5 F5 E5 E5 F5 E5 D5 D5 | 
+    D5 E5 F5 E5 D4 | F4 F4 F4 F4 G4 D4 D4 D4 D4 | | 
     F5 F5 E5 F5 E5 D5 F5 | D5 F5 F5 E5 D4 D4 | 
-    F4 F4 F4 G4 D4 D4 D4 D4 | D4 | F5 F5 E5 F5 E5 D5 | 
+    F4 F4 F4 G4 D4 D4 D4 D4 | | F5 F5 E5 F5 E5 D5 | 
     F5 F5 E5 D4 | F4 F4 F4 F4 G4 D4 D4 D4 | F5 F5 A5 | 
     B5 B5 A5 F5 A5 | A5 A5 E5 E5 E5 | F5 F5 E5 D5 D5 | 
     F3 F3 F3 F3 F3 | F5 F5 F5 D5 F5 D5 F5 | A5 | F5 F5 F5 D5 F5 E5 D5 | C5 D5 E5 | `,
@@ -85,9 +85,9 @@ songList.set("letHerGo", {
     "key": "letHerGo",
     "title": "let her go",
     "sheets": `A4 B4 A4 G4 | D4 E4 G4 E4 B4 | A4 B4 A4 G4 | D4 E4 G4 E4 B4 | A4 A4 B4 A4 G4 | D4 E4 G4 E4 G4 | 
-    D5 B4 G4 A4 B4 | B4 | A4 B4 A4 G4 | B4 B4 A4 B4 A4 G4 | G4 G4 E4 G4 E4 G4 | A4 B4 A4 G4 | 
-    A4 A4 G4 B4 A4 A4 | G4 A4 B4 A4 G4 | A4 G4 E4 E4 E4 D4 G4 | G4 | G4 | B4 B4 B4 A4 A4 G4 | G4 G4 E4 G4 E4 G4 | 
-    A4 B4 A4 G4 | A4 A4 G4 B4 A4 A4 | G4 A4 B4 A4 G4 | A4 G4 E4 E4 E4 D4 G4 | G4 | G4 | A4 G4 B4 A4 A4 G4 | 
+    D5 B4 G4 A4 B4 | | A4 B4 A4 G4 | B4 B4 A4 B4 A4 G4 | G4 G4 E4 G4 E4 G4 | A4 B4 A4 G4 | 
+    A4 A4 G4 B4 A4 A4 | G4 A4 B4 A4 G4 | A4 G4 E4 E4 E4 D4 G4 | | | B4 B4 B4 A4 A4 G4 | G4 G4 E4 G4 E4 G4 | 
+    A4 B4 A4 G4 | A4 A4 G4 B4 A4 A4 | G4 A4 B4 A4 G4 | A4 G4 E4 E4 E4 D4 G4 | | | A4 G4 B4 A4 A4 G4 | 
     
     B4 B4 B4 B4 B4 A4 G4 G4 | G4 B4 B4 | A4 A4 A4 G4 F4 | F4 E4 B4 A4 G4 | E4 E4 B4 A4 | G4 E4 |     
     E4 | B4 B4 B4 B4 B4 A4 G4 | G4 B4 B4 B4 B4 | A4 A4 A4 G4 F4 | F4 B4 B4 B4 B4 | B4 G4 G4 A4 G4 | 
