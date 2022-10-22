@@ -115,8 +115,8 @@ function signatureShifter(shift) {
 
 //keyboard function
 window.addEventListener('keydown', e => {
-    if (e.getModifierState("CapsLock")) shifted = true
-    else shifted = false
+    (e.getModifierState('CapsLock') || e.getModifierState('Shift')) ? shifted = true : shifted = false
+    stand.germanChecker(e)
     // console.log(e.key)
     console.log(e.code)
 	switch (e.code) {
@@ -280,6 +280,15 @@ const stand = {
         this.updateVisible()
         this.counter.innerHTML = --this.pipes
         console.log(this.pastSheets)
+    },
+    german: false,
+    germanChecker: function(e) {
+        if ('Key' + e.key.toUpperCase() != e.code) {
+            this.german = true
+        }
+    },
+    germanify: function(char) {
+        return char === 'z' ? 'y' : 'z'
     },
     sheet: document.querySelector('.sheet-div'),
     signature: document.querySelector('.signature-div'),
