@@ -4,14 +4,25 @@ let glissPotential = false //whether glissando is possible or not
 // const major = [0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28, 29, 31, 33, 35, 36] //major key pattern
 // const minor = [0, 2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 19, 20, 22, 24, 26, 27, 29, 31, 32, 34, 36] //minor key pattern
 let signature = major //selected key signature
-let keyLegend = ['w', 's', 'x', 'e', 'd', 'c', 'r', 'f', 'v', 't', 'g', 'b', 'y', 'h', 'n', 'u', 'j', 'm', 'i', 'k', 'o', 'l', '|']//, '|'] //keys to bind
-let chordLegend = ['1', 'q', 'a', 'z'] //keys to bind to chords
+const keyLegendUS = ['w', 's', 'x', 'e', 'd', 'c', 'r', 'f', 'v', 't', 'g', 'b', 'y', 'h', 'n', 'u', 'j', 'm', 'i', 'k', 'o', 'l', '|']//, '|'] //keys to bind
+const keyLegendDE = ['w', 's', 'x', 'e', 'd', 'c', 'r', 'f', 'v', 't', 'g', 'b', 'z', 'h', 'n', 'u', 'j', 'm', 'i', 'k', 'o', 'l', '|']//, '|'] //keys to bind
+let keyLegend = keyLegendUS
+const chordLegendUS = ['1', 'q', 'a', 'z'] //keys to bind to chords
+const chordLegendDE = ['1', 'q', 'a', 'y']
+let chordLegend = chordLegendUS
 let legendCount = 0 //counter for upper array
 let signatureShift = 0
 const sigList = ['C', 'C sharp', 'D', 'E flat', 'E', 'F', 'F sharp', 'G', 'G sharp', 'A', 'B flat', 'B'] //signature list
 let binds = new Map()
 // let reverseBinds = new Map()
 let shifted = false
+const pianoLegend = [
+    'C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3',
+    'C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4',
+    'C5', 'D5', 'E5', 'F5', 'G5', 'A5', 'B5',
+    'C6', '|'
+  ]
+const piano2key = new Map()
 
 //set all keys to something
 function allKeys(something) {
@@ -116,7 +127,7 @@ function signatureShifter(shift) {
 //keyboard function
 window.addEventListener('keydown', e => {
     (e.getModifierState('CapsLock') || e.getModifierState('Shift')) ? shifted = true : shifted = false
-    stand.germanChecker(e)
+    languageHandler.germanChecker(e)
     // console.log(e.key)
     console.log(e.code)
 	switch (e.code) {
@@ -141,6 +152,10 @@ window.addEventListener('keydown', e => {
             break;
         case 'ShiftRight':
             shifted = true
+            break;
+        case 'Backspace':
+            e.preventDefault()
+            stand.recallNotes()
             break;
         case 'Space':
             e.preventDefault()
@@ -232,70 +247,61 @@ document.querySelectorAll('.page').forEach(page => {
     })
 })
 
-const pianoLegend = [
-    'C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3',
-    'C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4',
-    'C5', 'D5', 'E5', 'F5', 'G5', 'A5', 'B5',
-    'C6', '|'
-  ]
-
-const piano2key = new Map()
-
 //music sheets
 const stand = {
     visibleSheets: '',
-    cs: new Array(),
+    completeSheets: new Array(),
     pastSheets: new Array(),
     prepareSong: function(song) {
         for (let i = 0; i < keyLegend.length; i++) {
             piano2key.set(pianoLegend[i], keyLegend[i])
         }
-        this.cs = song.sheets.trim().split(/\s+/gi).map(note => piano2key.get(note))
-        this.pipes = 0
-        this.cs.forEach(note => {
-            if (note !== '|') this.pipes++
+        this.completeSheets = song.sheets.trim().split(/\s+/gi).map(note => piano2key.get(note))
+        this.noteCount = 0
+        this.pastSheets = new Array()
+        this.completeSheets.forEach(note => {
+            if (note !== '|') this.noteCount++
         })
         this.updateVisible()
 
         this.signature.innerHTML = song.sigLiteral
-        this.counter.innerHTML = this.pipes
+        this.counter.innerHTML = this.noteCount
         this.sheet.innerHTML = this.visibleSheets
         chordHandler.setChords(selectedSong.chords)
     },
     updateVisible: function() {
         this.visibleSheets = ''
         for (let i = 0; i < 20; i++) {
-            if (this.cs[i]) this.visibleSheets = this.visibleSheets.concat(this.cs[i] + ' ')
+            if (this.completeSheets[i]) this.visibleSheets = this.visibleSheets.concat(languageHandler.swapZY(this.completeSheets[i]) + ' ')
         }
         this.sheet.innerHTML = this.visibleSheets.trim()
     },
     checkNote: function(key) {
         if (!selectedSong) return
-        if (key === 'Key' + this.cs[0].toUpperCase()) this.passNote()
+        if (key === 'Key' + this.completeSheets[0].toUpperCase()) this.passNote()
     },
     passNote: function() {
-        this.pastSheets.push(this.cs.shift())
-        if (this.pastSheets.length >= 10) this.pastSheets.shift()
-        while (this.cs[0] === '|') this.pastSheets.push(this.cs.shift())
+        this.pastSheets.push(this.completeSheets.shift())
+        while (this.completeSheets[0] === '|') this.pastSheets.push(this.completeSheets.shift())
         this.updateVisible()
-        this.counter.innerHTML = --this.pipes
+        this.counter.innerHTML = --this.noteCount
         console.log(this.pastSheets)
     },
-    german: false,
-    germanChecker: function(e) {
-        if ('Key' + e.key.toUpperCase() != e.code) {
-            this.german = true
+    recallNotes: function() {
+        for (let i = 0; i < 10; i++) {
+            if (this.pastSheets.length === 0) break
+            this.completeSheets.unshift(this.pastSheets.pop())
+            this.completeSheets[0] !== '|' ? this.noteCount++ : i-- //add one loop if first note in sheet is '|', otherwise count up noteCount
         }
-    },
-    germanify: function(char) {
-        return char === 'z' ? 'y' : 'z'
+        this.updateVisible()
+        this.counter.innerHTML = this.noteCount
     },
     sheet: document.querySelector('.sheet-div'),
     signature: document.querySelector('.signature-div'),
     counter: document.querySelector('.counter-div'),
-    pipes: 0
+    noteCount: 0
 }
-// stand.sheet.innerHTML = '123456789a123456789b123456789c123456789d' 
+stand.sheet.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select a song from the sidebar' 
 
 
 const noteArr = ['C', 'C sharp', 'D', 'E flat', 'E', 'F', 'F sharp', 'G', 'G sharp', 'A', 'B flat', 'B']
@@ -321,7 +327,6 @@ const chordHandler = {
             this.chordObjects[i].audioArray = string[i].map(note => {return new Audio(`./notes/${note}.mp3`)})
             this.chordObjects[i].label.innerHTML = chordLegend[i]
         }
-
     },
     playChord: function(chordIndex) {
         const chordInQuestion = this.chordObjects[chordIndex]
@@ -341,6 +346,48 @@ const chordHandler = {
     releaseChord: function(chordIndex) {
         this.chordObjects[chordIndex].pressed = false
     }
+}
+
+const languageHandler = {
+    german: false,
+    germanChecker: function(e) {
+        if (e.code === 'KeyZ' && e.key !== 'z') {
+            this.germanify()
+        }
+        if (e.code === 'KeyY' && e.key !== 'y') {
+            this.germanify()
+        }
+    },
+    germanify: function() {
+        if (this.german) return
+        this.german = true
+        // keyLegend = keyLegendDE
+        // chordLegend = chordLegendDE
+        activeKeyAssigner()
+        keyObjects[21].html.firstChild.innerHTML = 'z'  //temporary solution
+        stand.updateVisible()
+        sendNotice('german keyboard detected')
+        if (!chordHandler.enabled) return
+        for (let i = 0; i < chordHandler.chordObjects.length; i++) {
+            chordHandler.chordObjects[i].label.innerHTML = chordLegendDE[i]
+        }
+    },
+    swapZY: function(char) {
+        if (!this.german) return char
+        if (char === 'z') return 'y'
+        else if (char === 'y') return 'z'
+        else return char
+    }
+}
+
+const notice = document.querySelector('.notice')
+function sendNotice(msg) {
+    notice.innerHTML = msg
+	notice.classList.add('noticeActive')
+    setTimeout(() => {
+        notice.innerHTML = ''
+        notice.classList.remove('noticeActive')
+    }, 4000);
 }
 
 // const scrollHandler = {
