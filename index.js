@@ -4,12 +4,8 @@ let glissPotential = false //whether glissando is possible or not
 // const major = [0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28, 29, 31, 33, 35, 36] //major key pattern
 // const minor = [0, 2, 3, 5, 7, 8, 10, 12, 14, 15, 17, 19, 20, 22, 24, 26, 27, 29, 31, 32, 34, 36] //minor key pattern
 let signature = major //selected key signature
-const keyLegendUS = ['w', 's', 'x', 'e', 'd', 'c', 'r', 'f', 'v', 't', 'g', 'b', 'y', 'h', 'n', 'u', 'j', 'm', 'i', 'k', 'o', 'l', '|']//, '|'] //keys to bind
-const keyLegendDE = ['w', 's', 'x', 'e', 'd', 'c', 'r', 'f', 'v', 't', 'g', 'b', 'z', 'h', 'n', 'u', 'j', 'm', 'i', 'k', 'o', 'l', '|']//, '|'] //keys to bind
-let keyLegend = keyLegendUS
-const chordLegendUS = ['1', 'q', 'a', 'z'] //keys to bind to chords
-const chordLegendDE = ['1', 'q', 'a', 'y']
-let chordLegend = chordLegendUS
+const keyLegend = ['w', 's', 'x', 'e', 'd', 'c', 'r', 'f', 'v', 't', 'g', 'b', 'y', 'h', 'n', 'u', 'j', 'm', 'i', 'k', 'o', 'l', '|']//, '|'] //keys to bind
+const chordLegend = ['1', 'q', 'a', 'z'] //keys to bind to chord
 let legendCount = 0 //counter for upper array
 let signatureShift = 0
 const sigList = ['C', 'C sharp', 'D', 'E flat', 'E', 'F', 'F sharp', 'G', 'G sharp', 'A', 'B flat', 'B'] //signature list
@@ -106,7 +102,7 @@ function activeKeyAssigner() {
     keyObjects.forEach(key => {
         if (key.type !== 'key') return
         if (key.active) {
-            if (key.type === 'key') key.html.firstElementChild.innerHTML = keyLegend[legendCounter]
+            if (key.type === 'key') key.html.firstElementChild.innerHTML = languageHandler.swapZY(keyLegend[legendCounter])
             binds.set('Key' + keyLegend[legendCounter++].toUpperCase(), key)
             // reverseBinds.set(key, 'Key' + keyLegend[legendCounter++].toUpperCase())
         } else {
@@ -299,7 +295,12 @@ const stand = {
     sheet: document.querySelector('.sheet-div'),
     signature: document.querySelector('.signature-div'),
     counter: document.querySelector('.counter-div'),
-    noteCount: 0
+    noteCount: 0,
+    showMessage: function(msg) {
+        // this.sheet.style.justify-content = 'center'
+        // this.sheet.setAttribute('justify-content', 'center')
+        this.sheet.innerHTML = msg
+    }
 }
 stand.sheet.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select a song from the sidebar' 
 
@@ -325,7 +326,7 @@ const chordHandler = {
         })
         for (let i = 0; i < this.chordObjects.length; i++) {
             this.chordObjects[i].audioArray = string[i].map(note => {return new Audio(`./notes/${note}.mp3`)})
-            this.chordObjects[i].label.innerHTML = chordLegend[i]
+            this.chordObjects[i].label.innerHTML = languageHandler.swapZY(chordLegend[i])
         }
     },
     playChord: function(chordIndex) {
@@ -361,15 +362,16 @@ const languageHandler = {
     germanify: function() {
         if (this.german) return
         this.german = true
-        // keyLegend = keyLegendDE
-        // chordLegend = chordLegendDE
         activeKeyAssigner()
-        keyObjects[21].html.firstChild.innerHTML = 'z'  //temporary solution
+        keyObjects.forEach(key => {
+            if (key.type !== 'key') return
+            key.html.firstChild.innerHTML = this.swapZY(key.html.firstChild.innerHTML)
+        })
         stand.updateVisible()
         sendNotice('german keyboard detected')
         if (!chordHandler.enabled) return
         for (let i = 0; i < chordHandler.chordObjects.length; i++) {
-            chordHandler.chordObjects[i].label.innerHTML = chordLegendDE[i]
+            chordHandler.chordObjects[i].label.innerHTML = this.swapZY(chordHandler.chordObjects[i].label.innerHTML)
         }
     },
     swapZY: function(char) {
