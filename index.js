@@ -392,6 +392,15 @@ function sendNotice(msg) {
     }, 4000);
 }
 
+const activateHelp = document.querySelector('.activateHelp')
+const exit = document.querySelector('.exit')
+activateHelp.addEventListener('click', () => {
+    document.querySelector('.helpScreenContainer').classList.remove('noDisplay')
+})
+exit.addEventListener('click', () => {
+    document.querySelector('.helpScreenContainer').classList.add('noDisplay')
+})
+
 // const scrollHandler = {
 //     scrollCounter: 0,
 //     scrollLimit: 0,

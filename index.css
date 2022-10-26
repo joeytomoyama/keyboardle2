@@ -65,6 +65,9 @@ footer {
     opacity: 1;
     transform: translateX(0px);
 }
+.noDisplay {
+    display: none;
+}
 
 .wrapper {
     height: 100vh;
@@ -350,8 +353,45 @@ footer {
     transition: color .2s;
 }
 
+.helpScreenContainer {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: 99;
+}
+.helpScreen {
+    justify-content: flex-start;
+    flex-direction: column;
+    /* height: 60em; */
+    width: 60em;
+    padding: 2em;
+    background-color: black;
+    border: solid white 2px;
+    border-radius: 10px;
+}
+.activateHelp {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: xx-large;
+    padding-top: 1vh;
+    padding-right: 1vw;
+    cursor: pointer;
+    z-index: 98;
+}
+.exit {
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    margin-left: 35.5em;
+    margin-top: -1.1em;
+    font-size: 25px;
+    text-align: right;
+    cursor: pointer;
+}
 .noticeContainer {
-    align-items: flex-end;
     width: 100vw;
     height: 20vh;
     margin: auto;
@@ -468,4 +508,80 @@ footer {
 }
 .shake {
     animation: shake 1s, shake2 1s 1s, shake3 1s 2s;
+}
+
+
+
+
+  
+.keyboard {
+    /* text-align: center; */
+}
+
+.keyboard__row {
+    display: inline-block;
+    height: 3em;
+    margin: 0.2em;
+}
+
+.keyboard__row--h1 {
+    height: 1.7em;
+    line-height: 1.4em;
+}
+
+.keyboard__row--h3 {
+    height: 3em;
+}
+
+.keyboard__row > * {
+    position: relative;
+    float: left;
+    border-radius: 0.3em;
+    margin: 0.2em;
+    padding: 0.2em;
+    width: 3.3em;
+    height: 100%;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.keyboard__row--h1 > div {
+    width: 3.5em;
+}
+
+.key--w3 {
+    width: 4.6em;
+}
+
+.key--w4 {
+    width: 6em;
+}
+
+.key--w5 {
+    width: 6.5em;
+}
+
+.key--w6 {
+    width: 8.3em;
+}
+
+.key--space {
+    width: 18em;
+}
+
+.key--letter { background-color: rgb(130, 2, 2) }
+.key--percussion { background-color: rgb(0, 88, 0) }
+.key--shift { background-color: rgb(0, 0, 117) }
+.key--sig { background-color: rgb(122, 122, 0) }
+.key--delete { background-color: rgb(115, 0, 115) }
+
+.leg--letter { color: rgb(130, 2, 2) }
+.leg--percussion { color: rgb(0, 88, 0) }
+.leg--shift { color: rgb(0, 0, 117) }
+.leg--sig { color: rgb(122, 122, 0) }
+.leg--delete { color: rgb(115, 0, 115) }
+
+.key--arrow {
+    height: 1.5em;
+    margin-top: 1.7em;
+    line-height: 0.5em;
 }
