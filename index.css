@@ -165,7 +165,6 @@ footer {
     justify-content: flex-start;
     line-height: 2.5rem;
     text-align: center;
-    cursor: pointer;
 }
 .sig-sides {
     cursor: pointer;
@@ -200,7 +199,7 @@ footer {
     transform: translate(10px, 0) rotate(135deg);
 }
 .piano {
-    width: 65vw;
+    width: 62vw;
     height: 15vw;
     cursor: crosshair;
     font-size: 0.8vw;
@@ -220,8 +219,8 @@ footer {
     position: relative;
 }
 .bKey {
-    width: 1.75vw;
-    height: 9.5vw;
+    width: 1.8vw;
+    height: 9.4vw;
     /* line-height: 15vw; */
     margin-top: -2px;
     border-top: 2px;        /* delete this for round top edges */
@@ -252,13 +251,13 @@ footer {
     border-left: solid 1px var(--secColor)
 }
 .right-bound {
-    margin-left: 2.7vw;
+    margin-left: 2.6vw;
 }
 .left-bound {
     margin-left: 3.25vw;
 }
 .middle-bound {
-    margin-left: 3vw;
+    margin-left: 2.8vw;
 }
 #c1 {
     border-left: 2px solid;
@@ -358,7 +357,7 @@ footer {
     height: 100vh;
     top: 0;
     position: fixed;
-    background-color: rgba(0, 0, 0, .7);
+    background-color: rgba(0, 0, 0, .8);
     z-index: 99;
 }
 .helpScreen {
@@ -367,8 +366,8 @@ footer {
     /* height: 60em; */
     width: 60em;
     padding: 2em;
-    background-color: black;
-    border: solid white 2px;
+    /* background-color: rgb(24, 24, 24); */
+    /* border: solid white 2px; */
     border-radius: 10px;
 }
 .activateHelp {
@@ -380,16 +379,6 @@ footer {
     padding-right: 1vw;
     cursor: pointer;
     z-index: 98;
-}
-.exit {
-    width: 2em;
-    height: 2em;
-    position: absolute;
-    margin-left: 35.5em;
-    margin-top: -1.1em;
-    font-size: 25px;
-    text-align: right;
-    cursor: pointer;
 }
 .noticeContainer {
     width: 100vw;
@@ -534,6 +523,7 @@ footer {
 }
 
 .keyboard__row > * {
+    background-color: black;
     position: relative;
     float: left;
     border-radius: 0.3em;
@@ -541,7 +531,7 @@ footer {
     padding: 0.2em;
     width: 3.3em;
     height: 100%;
-    border: 1px solid rgb(255, 255, 255);
+    border: 2px solid rgb(255, 255, 255);
 }
 
 .keyboard__row--h1 > div {

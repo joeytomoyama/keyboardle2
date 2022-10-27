@@ -124,7 +124,7 @@ function signatureShifter(shift) {
 window.addEventListener('keydown', e => {
     (e.getModifierState('CapsLock') || e.getModifierState('Shift')) ? shifted = true : shifted = false
     languageHandler.germanChecker(e)
-    // console.log(e.key)
+    console.log(e.key)
     console.log(e.code)
 	switch (e.code) {
         case 'ArrowLeft':
@@ -274,7 +274,7 @@ const stand = {
     },
     checkNote: function(key) {
         if (!selectedSong) return
-        if (key === 'Key' + this.completeSheets[0].toUpperCase()) this.passNote()
+        if (key === 'Key' + this.completeSheets[0]?.toUpperCase()) this.passNote()
     },
     passNote: function() {
         this.pastSheets.push(this.completeSheets.shift())
@@ -352,11 +352,10 @@ const chordHandler = {
 const languageHandler = {
     german: false,
     germanChecker: function(e) {
-        if (e.code === 'KeyZ' && e.key !== 'z') {
-            this.germanify()
-        }
-        if (e.code === 'KeyY' && e.key !== 'y') {
-            this.germanify()
+        if (e.code === 'KeyZ') {
+            if (e.key !== 'z' && e.key !== 'Z') this.germanify()
+        } else if (e.code === 'KeyY') {
+            if (e.key !== 'y' && e.key !== 'Y') this.germanify()
         }
     },
     germanify: function() {
@@ -393,7 +392,7 @@ function sendNotice(msg) {
 }
 
 const activateHelp = document.querySelector('.activateHelp')
-const exit = document.querySelector('.exit')
+const exit = document.querySelector('.helpScreenContainer')
 activateHelp.addEventListener('click', () => {
     document.querySelector('.helpScreenContainer').classList.remove('noDisplay')
 })
