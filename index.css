@@ -149,7 +149,7 @@ footer {
     background-color: var(--secColor);
     width: 36rem;
     height: 2.5rem;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     color: var(--priColor);
     font-size: 1.3rem;
     padding-left: 1.2rem;
@@ -271,17 +271,21 @@ footer {
     border-bottom-right-radius: var(--border);
     border-color: var(--secColor);
 }
-.hihat, .tom {
+.percussion {
     width: 3vw;
     height: 2rem;
-    /* border: 2px solid white; */
-    border-radius: 0 0 10px 10px;
+    border: 2px solid white;
+    border-radius: 3px;
+    /* border-radius: 0 0 5px 5px; */
+}
+.hihat {
+    border-bottom-left-radius: 10px;
 }
 .bass {
     width: 10vw;
-    height: 2rem;
-    /* border: 2px solid white; */
-    border-radius: 0 0 10px 10px;
+}
+.tom {
+    border-bottom-right-radius: 10px;
 }
 
 .pagetwo {

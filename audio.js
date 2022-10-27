@@ -82,7 +82,7 @@ addSFX('B5', './notes/5b.mp3', 3)
 addSFX('C6', './notes/6c.mp3', 3)
 
 addSFX('bass', './notes/eKick1.mp3', 1)
-addSFX('clap', './notes/clap.mp3', 1)
+addSFX('tom', './notes/clap.mp3', 1)
 addSFX('hihat', './notes/hihat.mp3', 1)
 
 

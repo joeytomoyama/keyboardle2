@@ -37,6 +37,7 @@ labelArray.forEach(label => {
         if (relKey.pressed === true) return
         shifted ? relKey.keyDown(true) : relKey.keyDown(false)
         glissPotential = true
+        stand.checkNote('Key' + relKey.html.firstElementChild.innerHTML.toUpperCase())
     })
 
     //mouse up
@@ -64,10 +65,18 @@ document.querySelector('.piano').addEventListener('mouseleave', e => {
     glissPotential = false
 })
 
+document.querySelector('.hihat').addEventListener('mousedown', () => percHandler.playPerc(0))
+document.querySelector('.hihat').addEventListener('mouseup', () => percHandler.releasePerc(0))
+
+document.querySelector('.bass').addEventListener('mousedown', () => percHandler.playPerc(1))
+document.querySelector('.bass').addEventListener('mouseup', () => percHandler.releasePerc(1))
+
+document.querySelector('.tom').addEventListener('mousedown', () => percHandler.playPerc(2))
+document.querySelector('.tom').addEventListener('mouseup', () => percHandler.releasePerc(2))
+
 document.querySelector('.sig-left').addEventListener('click', () => {
     activeKeyMapper(signatureShifter(--signatureShift), signature)
 })
-
 document.querySelector('.sig-right').addEventListener('click', () => {
     activeKeyMapper(signatureShifter(++signatureShift), signature)
 })
@@ -97,14 +106,12 @@ function activeKeyMapper(shift, signature) {
 
 function activeKeyAssigner() {
     binds = new Map()
-    // reverseBinds = new Map()
     let legendCounter = 0
     keyObjects.forEach(key => {
         if (key.type !== 'key') return
         if (key.active) {
             if (key.type === 'key') key.html.firstElementChild.innerHTML = languageHandler.swapZY(keyLegend[legendCounter])
             binds.set('Key' + keyLegend[legendCounter++].toUpperCase(), key)
-            // reverseBinds.set(key, 'Key' + keyLegend[legendCounter++].toUpperCase())
         } else {
             if (key.type === 'key') key.html.firstElementChild.innerHTML = ''
         }
@@ -124,8 +131,8 @@ function signatureShifter(shift) {
 window.addEventListener('keydown', e => {
     (e.getModifierState('CapsLock') || e.getModifierState('Shift')) ? shifted = true : shifted = false
     languageHandler.germanChecker(e)
-    console.log(e.key)
-    console.log(e.code)
+    // console.log(e.key)
+    // console.log(e.code)
 	switch (e.code) {
         case 'ArrowLeft':
 			e.preventDefault
@@ -143,27 +150,21 @@ window.addEventListener('keydown', e => {
 			e.preventDefault()
 			activeKeyMapper(signatureShift, switchSig())
 			break;
-        case 'ShiftLeft':
-            shifted = true
-            break;
-        case 'ShiftRight':
-            shifted = true
-            break;
         case 'Backspace':
             e.preventDefault()
             stand.recallNotes()
             break;
-        case 'Space':
+        case 'Space':   //PERCUSSION
             e.preventDefault()
-            playSFX('bass')
+            percHandler.playPerc(1)
             break;
         case 'Enter':
             e.preventDefault()
-            playSFX('clap')
+            percHandler.playPerc(2)
             break;
         case 'Backquote':
             e.preventDefault()
-            playSFX('hihat')
+            percHandler.playPerc(0)
             break;
         case 'Digit1':	//CHORDS
             e.preventDefault()
@@ -195,12 +196,25 @@ function switchSig() {
 }
 
 window.addEventListener('keyup', e => {
+    if (!e.getModifierState('CapsLock')) shifted = false
 	switch (e.code) {
         case 'ShiftLeft':
             shifted = false
             break;
         case 'ShiftRight':
             shifted = false
+            break;
+        case 'Space':
+            e.preventDefault()
+            percHandler.releasePerc(1)
+            break;
+        case 'Enter':
+            e.preventDefault()
+            percHandler.releasePerc(2)
+            break;
+        case 'Backquote':
+            e.preventDefault()
+            percHandler.releasePerc(0)
             break;
         case 'Digit1':	//CHORDS
             e.preventDefault()
@@ -268,7 +282,8 @@ const stand = {
     updateVisible: function() {
         this.visibleSheets = ''
         for (let i = 0; i < 20; i++) {
-            if (this.completeSheets[i]) this.visibleSheets = this.visibleSheets.concat(languageHandler.swapZY(this.completeSheets[i]) + ' ')
+            (this.completeSheets[i]) ? this.visibleSheets += languageHandler.swapZY(this.completeSheets[i]) + ' ' :
+                                       this.visibleSheets += '&nbsp;&nbsp;'
         }
         this.sheet.innerHTML = this.visibleSheets.trim()
     },
@@ -281,7 +296,8 @@ const stand = {
         while (this.completeSheets[0] === '|') this.pastSheets.push(this.completeSheets.shift())
         this.updateVisible()
         this.counter.innerHTML = --this.noteCount
-        console.log(this.pastSheets)
+        // console.log(this.pas)
+        if (this.completeSheets.length === 0) this.showMessage('good job friend <3')
     },
     recallNotes: function() {
         for (let i = 0; i < 10; i++) {
@@ -297,12 +313,10 @@ const stand = {
     counter: document.querySelector('.counter-div'),
     noteCount: 0,
     showMessage: function(msg) {
-        // this.sheet.style.justify-content = 'center'
-        // this.sheet.setAttribute('justify-content', 'center')
         this.sheet.innerHTML = msg
     }
 }
-stand.sheet.innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select a song from the sidebar' 
+stand.showMessage('select a song from the sidebar')
 
 
 const noteArr = ['C', 'C sharp', 'D', 'E flat', 'E', 'F', 'F sharp', 'G', 'G sharp', 'A', 'B flat', 'B']
@@ -346,6 +360,16 @@ const chordHandler = {
     },
     releaseChord: function(chordIndex) {
         this.chordObjects[chordIndex].pressed = false
+    }
+}
+
+const percHandler = {
+    percObjects: percObjectsArray,
+    playPerc: function(percIndex) {
+        this.percObjects[percIndex].keyDown()
+    },
+    releasePerc: function(percIndex) {
+        this.percObjects[percIndex].keyUp()
     }
 }
 
@@ -438,4 +462,3 @@ const hiddenElements = document.querySelectorAll('.hidden')
 hiddenElements.forEach(element => observer.observe(element))
 
 activeKeyMapper(signatureShift, signature)
-// scrollHandler.scrollListener()

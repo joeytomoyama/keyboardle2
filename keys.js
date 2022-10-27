@@ -660,3 +660,54 @@ const chordObjectsArray = [
         label: document.querySelector('.chord-label4')
     },
 ]
+
+const percObjectsArray = [
+    {
+        name: 'hihat',
+        id: 0,
+        pressed: false,
+        keyDown: function() {
+            if (this.pressed) return
+            playSFX(this.name)
+            this.pressed = true
+            this.html.style.background = secColor
+        },
+        keyUp: function() {
+            this.pressed = false
+            this.html.style.background = priColor
+        },
+        html: document.querySelector('.hihat'),
+    },
+    {
+        name: 'bass',
+        id: 1,
+        pressed: false,
+        keyDown: function() {
+            if (this.pressed) return
+            playSFX(this.name)
+            this.pressed = true
+            this.html.style.background = secColor
+        },
+        keyUp: function() {
+            this.pressed = false
+            this.html.style.background = priColor
+        },
+        html: document.querySelector('.bass'),
+    },
+    {
+        name: 'tom',
+        id: 2,
+        pressed: false,
+        keyDown: function() {
+            if (this.pressed) return
+            playSFX(this.name)
+            this.pressed = true
+            this.html.style.background = secColor
+        },
+        keyUp: function() {
+            this.pressed = false
+            this.html.style.background = priColor
+        },
+        html: document.querySelector('.tom'),
+    }
+]
