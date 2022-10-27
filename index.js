@@ -67,12 +67,15 @@ document.querySelector('.piano').addEventListener('mouseleave', e => {
 
 document.querySelector('.hihat').addEventListener('mousedown', () => percHandler.playPerc(0))
 document.querySelector('.hihat').addEventListener('mouseup', () => percHandler.releasePerc(0))
+document.querySelector('.hihat').addEventListener('mouseleave', () => percHandler.releasePerc(0))
 
 document.querySelector('.bass').addEventListener('mousedown', () => percHandler.playPerc(1))
 document.querySelector('.bass').addEventListener('mouseup', () => percHandler.releasePerc(1))
+document.querySelector('.bass').addEventListener('mouseleave', () => percHandler.releasePerc(1))
 
 document.querySelector('.tom').addEventListener('mousedown', () => percHandler.playPerc(2))
 document.querySelector('.tom').addEventListener('mouseup', () => percHandler.releasePerc(2))
+document.querySelector('.tom').addEventListener('mouseleave', () => percHandler.releasePerc(2))
 
 document.querySelector('.sig-left').addEventListener('click', () => {
     activeKeyMapper(signatureShifter(--signatureShift), signature)

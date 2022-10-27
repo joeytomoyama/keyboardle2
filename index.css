@@ -272,7 +272,7 @@ footer {
     border-color: var(--secColor);
 }
 .percussion {
-    width: 3vw;
+    width: 3rem;
     height: 2rem;
     border: 2px solid white;
     border-radius: 3px;
@@ -282,7 +282,7 @@ footer {
     border-bottom-left-radius: 10px;
 }
 .bass {
-    width: 10vw;
+    width: 7rem;
 }
 .tom {
     border-bottom-right-radius: 10px;
