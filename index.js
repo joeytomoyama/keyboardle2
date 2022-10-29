@@ -470,7 +470,7 @@ const whiteObserver = new IntersectionObserver(entries => {
     })
 },
 {
-    rootMargin: '-30% 0% -30% 0%',
+    rootMargin: '-35% 0% -35% 0%',
 })
 const hiddenElements = document.querySelectorAll('.hidden')
 hiddenElements.forEach(element => observer.observe(element))
