@@ -3,8 +3,8 @@
     --border: .85vw;
     --purple: #eb69ff;
     --grey: #111111;
-    --priColor: black;
-    --secColor: white;
+    --priColor: rgb(0, 0, 0);
+    --secColor: rgb(255, 255, 255);
     --invert: 0%;
     counter-reset: pages;
 }
@@ -107,6 +107,13 @@ footer {
     width: 100%;
 }
 
+.whiteOut {
+    /* background-color: red; */
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    margin-top: 175vh;
+}
 .pageone {
     width: 100vw;
     height: 100vh;
@@ -274,7 +281,7 @@ footer {
 .percussion {
     width: 3rem;
     height: 2rem;
-    border: 2px solid white;
+    border: 2px solid var(--secColor);
     border-radius: 3px;
     /* border-radius: 0 0 5px 5px; */
 }

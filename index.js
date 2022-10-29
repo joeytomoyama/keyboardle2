@@ -450,18 +450,28 @@ exit.addEventListener('click', () => {
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-        // console.log(entry)
         if (entry.isIntersecting) {
             entry.target.classList.add('show')
-            // if (entry.target.id === 'whiteText') switchWhite()
         } else {
             entry.target.classList.remove('show')
-            // if (entry.target.id === 'whiteText') switchBlack()
         }
     })
 })
-
+const whiteObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            switchWhite()
+        } else {
+            switchBlack()
+        }
+    })
+},
+{
+    rootMargin: '-20% 0% -20% 0%',
+})
 const hiddenElements = document.querySelectorAll('.hidden')
 hiddenElements.forEach(element => observer.observe(element))
+
+document.querySelectorAll('.whiteOut').forEach(element => whiteObserver.observe(element))
 
 activeKeyMapper(signatureShift, signature)
