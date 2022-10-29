@@ -132,6 +132,26 @@ songList.set('allstar', {
     'sigLiteral': 'B major',
     'chords': ''
 })
+songList.set('opus', {
+    'key': 'opus',
+    'title': 'eric prydz<br>-<br>opus',
+    'sheets': `F3 F4 A3 C4 | F3 F4 A3 C4 | F3 F4 A3 C4 | F3 F4 A3 C4 | 
+    F3 G4 A3 C4 | F3 G4 A3 C4 | F3 G4 A3 C4 | F3 G4 A3 C4 | 
+    F3 A4 A3 C4 | F3 A4 A3 C4 | F3 A4 A3 C4 | F3 A4 A3 C4 | 
+    F3 A4 A3 D4 | F3 A4 A3 D4 | F3 A4 A3 D4 | F3 A4 A3 D4 | 
+    A3 A4 D4 E4 | A3 A4 D4 E4 | A3 A4 D4 E4 | A3 A4 D4 E4 | 
+    G3 G4 B3 E4 | G3 G4 B3 E4 | G3 G4 B3 E4 | G3 G4 B3 E4 |
+    
+    F3 F4 A3 C4 | F3 F4 A3 C4 | F3 F4 A3 C4 | F3 F4 A3 C4 | 
+    F3 G4 A3 C4 | F3 G4 A3 C4 | F3 G4 A3 C4 | F3 G4 A3 C4 | 
+    F3 A4 A3 C4 | F3 A4 A3 C4 | F3 A4 A3 C4 | F3 A4 A3 C4 | 
+    F3 A4 A3 D4 | F3 A4 A3 D4 | F3 A4 A3 D4 | F3 A4 A3 D4 | 
+    A3 A4 D4 E4 | A3 A4 D4 E4 | A3 A4 D4 E4 | A3 A4 D4 E4 | 
+    G3 G4 B3 E4 | G3 G4 B3 E4 | G3 G4 B3 E4 | G3 G4 B3 E4`,
+    'signature': [9, major],
+    'sigLiteral': 'A major',
+    'chords': ''
+})
 songList.set('you', {
     'key': 'you',
     'title': 'upload song<br>(coming soon)',

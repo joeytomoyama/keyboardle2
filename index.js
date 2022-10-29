@@ -244,7 +244,7 @@ window.addEventListener('keyup', e => {
 //navigation bar
 songList.forEach(song => {
     const page = document.createElement('div')
-    page.innerHTML = song.title
+    page.innerHTML = `<span class="pageText" id="${song.key}">${song.title}</span>`
     page.className = 'page center ' + song.key
     page.id = song.key
     navbar.appendChild(page)
@@ -457,12 +457,15 @@ const observer = new IntersectionObserver(entries => {
         }
     })
 })
+const scribble = document.querySelector('.scribble')
 const whiteObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             switchWhite()
+            scribble.style.opacity = '1'
         } else {
             switchBlack()
+            scribble.style.opacity = '0'
         }
     })
 },

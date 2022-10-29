@@ -101,10 +101,18 @@ footer {
     left: 83vw;
 }
 .chord-svg {
-    filter: invert(var(--invert));
+    /* filter: invert(var(--invert)); */
     object-fit: cover;
     height: 100%;
     width: 100%;
+}
+.scribble {
+    height: 100vh;
+    width: 100vw;
+    top: 90vh;
+    position: absolute;
+    opacity: 0;
+    /* z-index: -1; */
 }
 
 .whiteOut {
@@ -112,7 +120,7 @@ footer {
     height: 30px;
     width: 30px;
     position: absolute;
-    margin-top: 175vh;
+    top: 150vh;
 }
 .pageone {
     width: 100vw;
@@ -304,6 +312,11 @@ footer {
 .text {
     width: 40vw;
 }
+.textBackground {
+    background-color: var(--priColor);
+    /* padding: 2px; */
+    /* background-color: rgba(255, 255, 255, .7); */
+}
 
 .pagethree {
     width: 100vw;
@@ -336,9 +349,9 @@ footer {
 .navbar-container:hover {
     width: 20rem;
 }
-.navbar-container:hover .page {
+.navbar-container:hover .pageText {
     color: var(--secColor);
-    /* font-size: 1rem; */
+    opacity: 1;
 }
 .navbar {
     padding: 10px;
@@ -353,16 +366,16 @@ footer {
     margin: .5rem;
     background-color: var(--priColor);
     color: var(--priColor);
-    /* color:rgba(0, 0, 0, 0) */
-    /* font-size: 0; */
     text-align: center;
     overflow: hidden;
     white-space: nowrap;
-    /* text-align: center; */
     border: 2px solid var(--secColor);
     border-radius: 5px;
     cursor: pointer;
     transition: color .2s;
+}
+.pageText {
+    opacity: 0;
 }
 
 .helpScreenContainer {
@@ -372,7 +385,7 @@ footer {
     position: fixed;
     background-color: rgba(0, 0, 0, .8);
     z-index: 99;
-    animation: fadein 0.5s ease-in-out;
+    animation: fadein 0.5s ease-in;
 }
 .helpScreen {
     justify-content: flex-start;
