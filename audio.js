@@ -9,9 +9,11 @@ class AudioSwitcher {
     }
 
     go() {
-        // this.array[this.count % this.array.length].pause()
-        this.array[this.count % this.array.length].currentTime = 0
-        this.array[this.count++ % this.array.length].play()
+        const audio = this.array[this.count % this.array.length]
+        // audio.pause()
+        audio.currentTime = 0
+        audio.play()
+        this.count++
     }
 
     setVolume(volume) {
