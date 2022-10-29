@@ -358,6 +358,7 @@ footer {
     text-align: center;
     overflow: hidden;
     white-space: nowrap;
+    /* text-align: center; */
     border: 2px solid var(--secColor);
     border-radius: 5px;
     cursor: pointer;

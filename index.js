@@ -245,7 +245,7 @@ window.addEventListener('keyup', e => {
 songList.forEach(song => {
     const page = document.createElement('div')
     page.innerHTML = song.title
-    page.className = 'page center'
+    page.className = 'page center ' + song.key
     page.id = song.key
     navbar.appendChild(page)
 })
