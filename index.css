@@ -107,6 +107,13 @@ footer {
     width: 100%;
 }
 
+.whiteOut {
+    /* background-color: red; */
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    margin-top: 175vh;
+}
 .pageone {
     width: 100vw;
     height: 100vh;
@@ -350,6 +357,7 @@ footer {
     /* font-size: 0; */
     overflow: hidden;
     white-space: nowrap;
+    /* text-align: center; */
     border: 2px solid var(--secColor);
     border-radius: 5px;
     cursor: pointer;
