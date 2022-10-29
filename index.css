@@ -283,7 +283,7 @@ footer {
     height: 2rem;
     border: 2px solid var(--secColor);
     border-radius: 3px;
-    /* border-radius: 0 0 5px 5px; */
+    cursor: pointer;
 }
 .hihat {
     border-bottom-left-radius: 10px;
@@ -371,6 +371,7 @@ footer {
     position: fixed;
     background-color: rgba(0, 0, 0, .8);
     z-index: 99;
+    animation: fadein 0.5s ease-in-out;
 }
 .helpScreen {
     justify-content: flex-start;
@@ -421,6 +422,10 @@ footer {
         opacity: 100%;
         transform: rotate(0deg);
     }
+}
+@keyframes fadein {
+    0% {opacity: 0%;}
+    100% {opacity: 100%;}
 }
 @keyframes fadeinout {
     0% {opacity: 0%;}
