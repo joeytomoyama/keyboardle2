@@ -10,16 +10,10 @@ class AudioSwitcher {
 
     go() {
         const audio = this.array[this.count % this.array.length]
-<<<<<<< HEAD
-        audio.pause()
-        audio.currentTime = 0
-        audio.play()
-=======
         // audio.pause()
         audio.currentTime = 0
         audio.play()
         this.count++
->>>>>>> b66a8651c10babeb1b32e6782b187028bea7d552
     }
 
     setVolume(volume) {
