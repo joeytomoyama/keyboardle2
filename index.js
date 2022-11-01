@@ -319,7 +319,7 @@ const stand = {
         this.sheet.innerHTML = msg
     }
 }
-stand.showMessage('select a song from the sidebar')
+stand.showMessage('select a song from the sidebar bro')
 
 
 const noteArr = ['C', 'C sharp', 'D', 'E flat', 'E', 'F', 'F sharp', 'G', 'G sharp', 'A', 'B flat', 'B']
