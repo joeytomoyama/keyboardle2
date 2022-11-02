@@ -287,7 +287,7 @@ footer {
     border-color: var(--secColor);
 }
 .percussion {
-    width: 2rem;
+    width: 2.5rem;
     height: 2rem;
     border: 2px solid var(--secColor);
     border-radius: 3px;
@@ -297,7 +297,7 @@ footer {
     border-bottom-left-radius: 10px;
 }
 .bass {
-    width: 8rem;
+    width: 7.75rem;
 }
 .tom {
     border-bottom-right-radius: 10px;
